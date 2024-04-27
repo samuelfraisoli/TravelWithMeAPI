@@ -1,0 +1,16 @@
+<div class="d-flex flex-wrap mb-4">
+    <h1 class="flex-grow-1" i18n="@@resena.edit.headline">Edit Resena</h1>
+    <div>
+        <a routerLink="/resenas" class="btn btn-secondary" i18n="@@resena.edit.back">Back to list</a>
+    </div>
+</div>
+<form [formGroup]="editForm" (ngSubmit)="handleSubmit()">
+    <app-input-row [group]="editForm" field="id" rowType="number" i18n-label="@@resena.id.label" label="Id" />
+    <app-input-row [group]="editForm" field="idUsuario" i18n-label="@@resena.idUsuario.label" label="Id Usuario" />
+    <app-input-row [group]="editForm" field="fecha" i18n-label="@@resena.fecha.label" label="Fecha" />
+    <app-input-row [group]="editForm" field="titulo" i18n-label="@@resena.titulo.label" label="Titulo" />
+    <app-input-row [group]="editForm" field="contenido" i18n-label="@@resena.contenido.label" label="Contenido" />
+    <app-input-row [group]="editForm" field="nota" rowType="number" i18n-label="@@resena.nota.label" label="Nota" />
+    <app-input-row [group]="editForm" field="hotel" rowType="select" [options]="hotelValues" i18n-label="@@resena.hotel.label" label="Hotel" />
+    <input type="submit" i18n-value="@@resena.edit.headline" value="Edit Resena" class="btn btn-primary mt-4" />
+</form>

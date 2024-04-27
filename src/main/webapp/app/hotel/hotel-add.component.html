@@ -1,0 +1,14 @@
+<div class="d-flex flex-wrap mb-4">
+    <h1 class="flex-grow-1" i18n="@@hotel.add.headline">Add Hotel</h1>
+    <div>
+        <a routerLink="/hotels" class="btn btn-secondary" i18n="@@hotel.add.back">Back to list</a>
+    </div>
+</div>
+<form [formGroup]="addForm" (ngSubmit)="handleSubmit()">
+    <app-input-row [group]="addForm" field="nombre" i18n-label="@@hotel.nombre.label" label="Nombre" />
+    <app-input-row [group]="addForm" field="fotos" rowType="textarea" i18n-label="@@hotel.fotos.label" label="Fotos" />
+    <app-input-row [group]="addForm" field="fechasLibres" rowType="textarea" i18n-label="@@hotel.fechasLibres.label" label="Fechas Libres" />
+    <app-input-row [group]="addForm" field="direccion" rowType="select" [options]="direccionValues" i18n-label="@@hotel.direccion.label" label="Direccion" />
+    <app-input-row [group]="addForm" field="detallesHotel" rowType="select" [options]="detallesHotelValues" i18n-label="@@hotel.detallesHotel.label" label="Detalles Hotel" />
+    <input type="submit" i18n-value="@@hotel.add.headline" value="Add Hotel" class="btn btn-primary mt-4" />
+</form>

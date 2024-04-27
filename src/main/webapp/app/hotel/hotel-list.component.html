@@ -1,0 +1,39 @@
+<div class="d-flex flex-wrap mb-4">
+    <h1 class="flex-grow-1" i18n="@@hotel.list.headline">Hotels</h1>
+    <div>
+        <a routerLink="/hotels/add" class="btn btn-primary ms-2" i18n="@@hotel.list.createNew">Create new Hotel</a>
+    </div>
+</div>
+@if (!hotels || hotels.length === 0) {
+<div i18n="@@hotel.list.empty">No Hotels could be found.</div>
+} @else {
+<div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+        <thead>
+            <tr>
+                <th scope="col" i18n="@@hotel.id.label">Id</th>
+                <th scope="col" i18n="@@hotel.nombre.label">Nombre</th>
+                <th scope="col" i18n="@@hotel.direccion.label">Direccion</th>
+                <th scope="col" i18n="@@hotel.detallesHotel.label">Detalles Hotel</th>
+                <th><!-- --></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (hotel of hotels; track hotel.id) {
+            <tr>
+                <td>{{ hotel.id }}</td>
+                <td>{{ hotel.nombre }}</td>
+                <td>{{ hotel.direccion }}</td>
+                <td>{{ hotel.detallesHotel }}</td>
+                <td>
+                    <div class="float-end text-nowrap">
+                        <a [routerLink]="['/hotels/edit', hotel.id]" class="btn btn-sm btn-secondary" i18n="@@hotel.list.edit">Edit</a>
+                        <button type="button" (click)="confirmDelete(hotel.id!)" class="btn btn-sm btn-secondary" i18n="@@hotel.list.delete">Delete</button>
+                    </div>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}

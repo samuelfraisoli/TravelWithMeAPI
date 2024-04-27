@@ -1,0 +1,45 @@
+<div class="d-flex flex-wrap mb-4">
+    <h1 class="flex-grow-1" i18n="@@resena.list.headline">Resenas</h1>
+    <div>
+        <a routerLink="/resenas/add" class="btn btn-primary ms-2" i18n="@@resena.list.createNew">Create new Resena</a>
+    </div>
+</div>
+@if (!resenas || resenas.length === 0) {
+<div i18n="@@resena.list.empty">No Resenas could be found.</div>
+} @else {
+<div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+        <thead>
+            <tr>
+                <th scope="col" i18n="@@resena.id.label">Id</th>
+                <th scope="col" i18n="@@resena.idUsuario.label">Id Usuario</th>
+                <th scope="col" i18n="@@resena.fecha.label">Fecha</th>
+                <th scope="col" i18n="@@resena.titulo.label">Titulo</th>
+                <th scope="col" i18n="@@resena.contenido.label">Contenido</th>
+                <th scope="col" i18n="@@resena.nota.label">Nota</th>
+                <th scope="col" i18n="@@resena.hotel.label">Hotel</th>
+                <th><!-- --></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (resena of resenas; track resena.id) {
+            <tr>
+                <td>{{ resena.id }}</td>
+                <td>{{ resena.idUsuario }}</td>
+                <td>{{ resena.fecha }}</td>
+                <td>{{ resena.titulo }}</td>
+                <td>{{ resena.contenido }}</td>
+                <td>{{ resena.nota }}</td>
+                <td>{{ resena.hotel }}</td>
+                <td>
+                    <div class="float-end text-nowrap">
+                        <a [routerLink]="['/resenas/edit', resena.id]" class="btn btn-sm btn-secondary" i18n="@@resena.list.edit">Edit</a>
+                        <button type="button" (click)="confirmDelete(resena.id!)" class="btn btn-sm btn-secondary" i18n="@@resena.list.delete">Delete</button>
+                    </div>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}

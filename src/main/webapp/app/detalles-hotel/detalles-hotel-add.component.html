@@ -1,0 +1,13 @@
+<div class="d-flex flex-wrap mb-4">
+    <h1 class="flex-grow-1" i18n="@@detallesHotel.add.headline">Add Detalles Hotel</h1>
+    <div>
+        <a routerLink="/detallesHotels" class="btn btn-secondary" i18n="@@detallesHotel.add.back">Back to list</a>
+    </div>
+</div>
+<form [formGroup]="addForm" (ngSubmit)="handleSubmit()">
+    <app-input-row [group]="addForm" field="descripcion" i18n-label="@@detallesHotel.descripcion.label" label="Descripcion" />
+    <app-input-row [group]="addForm" field="web" i18n-label="@@detallesHotel.web.label" label="Web" />
+    <app-input-row [group]="addForm" field="telefono" i18n-label="@@detallesHotel.telefono.label" label="Telefono" />
+    <app-input-row [group]="addForm" field="comodidades" rowType="textarea" i18n-label="@@detallesHotel.comodidades.label" label="Comodidades" />
+    <input type="submit" i18n-value="@@detallesHotel.add.headline" value="Add Detalles Hotel" class="btn btn-primary mt-4" />
+</form>

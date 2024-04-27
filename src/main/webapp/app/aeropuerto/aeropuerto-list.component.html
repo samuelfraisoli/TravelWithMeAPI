@@ -1,0 +1,41 @@
+<div class="d-flex flex-wrap mb-4">
+    <h1 class="flex-grow-1" i18n="@@aeropuerto.list.headline">Aeropuertoes</h1>
+    <div>
+        <a routerLink="/aeropuertos/add" class="btn btn-primary ms-2" i18n="@@aeropuerto.list.createNew">Create new Aeropuerto</a>
+    </div>
+</div>
+@if (!aeropuertoes || aeropuertoes.length === 0) {
+<div i18n="@@aeropuerto.list.empty">No Aeropuertoes could be found.</div>
+} @else {
+<div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+        <thead>
+            <tr>
+                <th scope="col" i18n="@@aeropuerto.id.label">Id</th>
+                <th scope="col" i18n="@@aeropuerto.nombre.label">Nombre</th>
+                <th scope="col" i18n="@@aeropuerto.ciudad.label">Ciudad</th>
+                <th scope="col" i18n="@@aeropuerto.ciudadAbrev.label">Ciudad Abrev</th>
+                <th scope="col" i18n="@@aeropuerto.pais.label">Pais</th>
+                <th><!-- --></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (aeropuerto of aeropuertoes; track aeropuerto.id) {
+            <tr>
+                <td>{{ aeropuerto.id }}</td>
+                <td>{{ aeropuerto.nombre }}</td>
+                <td>{{ aeropuerto.ciudad }}</td>
+                <td>{{ aeropuerto.ciudadAbrev }}</td>
+                <td>{{ aeropuerto.pais }}</td>
+                <td>
+                    <div class="float-end text-nowrap">
+                        <a [routerLink]="['/aeropuertos/edit', aeropuerto.id]" class="btn btn-sm btn-secondary" i18n="@@aeropuerto.list.edit">Edit</a>
+                        <button type="button" (click)="confirmDelete(aeropuerto.id!)" class="btn btn-sm btn-secondary" i18n="@@aeropuerto.list.delete">Delete</button>
+                    </div>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}

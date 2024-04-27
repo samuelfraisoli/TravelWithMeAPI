@@ -1,0 +1,18 @@
+<div class="d-flex flex-wrap mb-4">
+    <h1 class="flex-grow-1" i18n="@@vuelo.edit.headline">Edit Vuelo</h1>
+    <div>
+        <a routerLink="/vuelos" class="btn btn-secondary" i18n="@@vuelo.edit.back">Back to list</a>
+    </div>
+</div>
+<form [formGroup]="editForm" (ngSubmit)="handleSubmit()">
+    <app-input-row [group]="editForm" field="id" rowType="number" i18n-label="@@vuelo.id.label" label="Id" />
+    <app-input-row [group]="editForm" field="idVuelo" i18n-label="@@vuelo.idVuelo.label" label="Id Vuelo" />
+    <app-input-row [group]="editForm" field="aerolinea" i18n-label="@@vuelo.aerolinea.label" label="Aerolinea" />
+    <app-input-row [group]="editForm" field="precio" i18n-label="@@vuelo.precio.label" label="Precio" />
+    <app-input-row [group]="editForm" field="tipo" i18n-label="@@vuelo.tipo.label" label="Tipo" />
+    <app-input-row [group]="editForm" field="origen" i18n-label="@@vuelo.origen.label" label="Origen" />
+    <app-input-row [group]="editForm" field="destino" i18n-label="@@vuelo.destino.label" label="Destino" />
+    <app-input-row [group]="editForm" field="fecha" i18n-label="@@vuelo.fecha.label" label="Fecha" />
+    <app-input-row [group]="editForm" field="equipaje" rowType="select" [options]="equipajeValues" i18n-label="@@vuelo.equipaje.label" label="Equipaje" />
+    <input type="submit" i18n-value="@@vuelo.edit.headline" value="Edit Vuelo" class="btn btn-primary mt-4" />
+</form>

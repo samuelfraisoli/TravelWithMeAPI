@@ -1,0 +1,15 @@
+<div class="d-flex flex-wrap mb-4">
+    <h1 class="flex-grow-1" i18n="@@direccion.add.headline">Add Direccion</h1>
+    <div>
+        <a routerLink="/direccions" class="btn btn-secondary" i18n="@@direccion.add.back">Back to list</a>
+    </div>
+</div>
+<form [formGroup]="addForm" (ngSubmit)="handleSubmit()">
+    <app-input-row [group]="addForm" field="direccionString" i18n-label="@@direccion.direccionString.label" label="Direccion String" />
+    <app-input-row [group]="addForm" field="direccion1" i18n-label="@@direccion.direccion1.label" label="Direccion1" />
+    <app-input-row [group]="addForm" field="direccion2" i18n-label="@@direccion.direccion2.label" label="Direccion2" />
+    <app-input-row [group]="addForm" field="ciudad" i18n-label="@@direccion.ciudad.label" label="Ciudad" />
+    <app-input-row [group]="addForm" field="pais" i18n-label="@@direccion.pais.label" label="Pais" />
+    <app-input-row [group]="addForm" field="codPostal" i18n-label="@@direccion.codPostal.label" label="Cod Postal" />
+    <input type="submit" i18n-value="@@direccion.add.headline" value="Add Direccion" class="btn btn-primary mt-4" />
+</form>

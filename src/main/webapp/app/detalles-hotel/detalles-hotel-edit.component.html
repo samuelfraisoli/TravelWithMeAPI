@@ -1,0 +1,14 @@
+<div class="d-flex flex-wrap mb-4">
+    <h1 class="flex-grow-1" i18n="@@detallesHotel.edit.headline">Edit Detalles Hotel</h1>
+    <div>
+        <a routerLink="/detallesHotels" class="btn btn-secondary" i18n="@@detallesHotel.edit.back">Back to list</a>
+    </div>
+</div>
+<form [formGroup]="editForm" (ngSubmit)="handleSubmit()">
+    <app-input-row [group]="editForm" field="id" rowType="number" i18n-label="@@detallesHotel.id.label" label="Id" />
+    <app-input-row [group]="editForm" field="descripcion" i18n-label="@@detallesHotel.descripcion.label" label="Descripcion" />
+    <app-input-row [group]="editForm" field="web" i18n-label="@@detallesHotel.web.label" label="Web" />
+    <app-input-row [group]="editForm" field="telefono" i18n-label="@@detallesHotel.telefono.label" label="Telefono" />
+    <app-input-row [group]="editForm" field="comodidades" rowType="textarea" i18n-label="@@detallesHotel.comodidades.label" label="Comodidades" />
+    <input type="submit" i18n-value="@@detallesHotel.edit.headline" value="Edit Detalles Hotel" class="btn btn-primary mt-4" />
+</form>

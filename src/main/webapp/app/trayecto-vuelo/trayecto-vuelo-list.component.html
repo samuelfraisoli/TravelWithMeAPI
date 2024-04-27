@@ -1,0 +1,47 @@
+<div class="d-flex flex-wrap mb-4">
+    <h1 class="flex-grow-1" i18n="@@trayectoVuelo.list.headline">Trayecto Vueloes</h1>
+    <div>
+        <a routerLink="/trayectoVuelos/add" class="btn btn-primary ms-2" i18n="@@trayectoVuelo.list.createNew">Create new Trayecto Vuelo</a>
+    </div>
+</div>
+@if (!trayectoVueloes || trayectoVueloes.length === 0) {
+<div i18n="@@trayectoVuelo.list.empty">No Trayecto Vueloes could be found.</div>
+} @else {
+<div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+        <thead>
+            <tr>
+                <th scope="col" i18n="@@trayectoVuelo.id.label">Id</th>
+                <th scope="col" i18n="@@trayectoVuelo.idTrayecto.label">Id Trayecto</th>
+                <th scope="col" i18n="@@trayectoVuelo.aerolinea.label">Aerolinea</th>
+                <th scope="col" i18n="@@trayectoVuelo.tipo.label">Tipo</th>
+                <th scope="col" i18n="@@trayectoVuelo.fechaSalida.label">Fecha Salida</th>
+                <th scope="col" i18n="@@trayectoVuelo.fechaLlegada.label">Fecha Llegada</th>
+                <th scope="col" i18n="@@trayectoVuelo.escala.label">Escala</th>
+                <th scope="col" i18n="@@trayectoVuelo.fechaInicioEscala.label">Fecha Inicio Escala</th>
+                <th><!-- --></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (trayectoVuelo of trayectoVueloes; track trayectoVuelo.id) {
+            <tr>
+                <td>{{ trayectoVuelo.id }}</td>
+                <td>{{ trayectoVuelo.idTrayecto }}</td>
+                <td>{{ trayectoVuelo.aerolinea }}</td>
+                <td>{{ trayectoVuelo.tipo }}</td>
+                <td>{{ trayectoVuelo.fechaSalida }}</td>
+                <td>{{ trayectoVuelo.fechaLlegada }}</td>
+                <td>{{ trayectoVuelo.escala }}</td>
+                <td>{{ trayectoVuelo.fechaInicioEscala }}</td>
+                <td>
+                    <div class="float-end text-nowrap">
+                        <a [routerLink]="['/trayectoVuelos/edit', trayectoVuelo.id]" class="btn btn-sm btn-secondary" i18n="@@trayectoVuelo.list.edit">Edit</a>
+                        <button type="button" (click)="confirmDelete(trayectoVuelo.id!)" class="btn btn-sm btn-secondary" i18n="@@trayectoVuelo.list.delete">Delete</button>
+                    </div>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}
