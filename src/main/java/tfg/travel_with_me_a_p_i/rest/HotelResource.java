@@ -7,17 +7,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import tfg.travel_with_me_a_p_i.domain.DetallesHotel;
 import tfg.travel_with_me_a_p_i.domain.Direccion;
 import tfg.travel_with_me_a_p_i.model.HotelDTO;
+import tfg.travel_with_me_a_p_i.model.VueloDTO;
 import tfg.travel_with_me_a_p_i.repos.DetallesHotelRepository;
 import tfg.travel_with_me_a_p_i.repos.DireccionRepository;
 import tfg.travel_with_me_a_p_i.service.HotelService;
@@ -40,6 +34,15 @@ public class HotelResource {
         this.hotelService = hotelService;
         this.direccionRepository = direccionRepository;
         this.detallesHotelRepository = detallesHotelRepository;
+    }
+
+    @GetMapping("/filtrados")
+    public ResponseEntity<List<HotelDTO>> getAllHotelesFiltrados(
+        @RequestParam("nombre") String nombre,
+        @RequestParam("fecha_entrada") String fecha_entrada,
+        @RequestParam("fecha_salida") String fecha_salida) {
+
+        return ResponseEntity.ok(hotelService.findAllFiltro(nombre, fecha_entrada, fecha_salida));
     }
 
     @GetMapping

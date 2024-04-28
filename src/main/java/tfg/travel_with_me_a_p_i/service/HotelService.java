@@ -1,13 +1,14 @@
 package tfg.travel_with_me_a_p_i.service;
 
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import tfg.travel_with_me_a_p_i.domain.DetallesHotel;
-import tfg.travel_with_me_a_p_i.domain.Direccion;
-import tfg.travel_with_me_a_p_i.domain.Hotel;
-import tfg.travel_with_me_a_p_i.domain.Resena;
+import tfg.travel_with_me_a_p_i.domain.*;
 import tfg.travel_with_me_a_p_i.model.HotelDTO;
+import tfg.travel_with_me_a_p_i.model.VueloDTO;
 import tfg.travel_with_me_a_p_i.repos.DetallesHotelRepository;
 import tfg.travel_with_me_a_p_i.repos.DireccionRepository;
 import tfg.travel_with_me_a_p_i.repos.HotelRepository;
@@ -33,6 +34,89 @@ public class HotelService {
         this.detallesHotelRepository = detallesHotelRepository;
         this.resenaRepository = resenaRepository;
     }
+
+    //busca los hoteles por nombre en el repositorio, luego los filtra para ver los que tienen todas las fechas
+    // disponibles entre las 2 fechas que pasamos
+    public List<HotelDTO> findAllFiltro(String nombre, String fecha_entrada, String fecha_salida) {
+        Date fecha_entrada_date = dateStringToDate(fecha_entrada);
+        Date fecha_salida_date = dateStringToDate(fecha_salida);
+        if(fecha_entrada_date != null && fecha_salida_date != null) {
+            //busca los hoteles solo por el nombre
+            List<Hotel> hoteles = hotelRepository.findAllFiltro(nombre);
+
+            //quita los hoteles que no cumplan las condiciones
+            final List<Hotel> hotelesDisponibles = filtrarHotelesPorFechas(hoteles, fecha_entrada_date, fecha_salida_date);
+            return hotelesDisponibles.stream()
+                .map(hotel -> mapToDTO(hotel, new HotelDTO()))
+                .toList();
+        }
+        List<HotelDTO> hotelesDisponibles = new ArrayList<>();
+        return hotelesDisponibles;
+    }
+
+    public List<Hotel> filtrarHotelesPorFechas(List<Hotel>hoteles, Date fechaInicio, Date fechaFinal ) {
+
+        List<Hotel> hotelesDisponibles = new ArrayList();
+        for(Hotel hotel : hoteles) {
+            List<Date> fechasHotel = parseFechasString(hotel.getFechasLibres());
+            if(todasFechasPresentes(fechasHotel, fechaInicio, fechaFinal)) {
+                hotelesDisponibles.add(hotel);
+            }
+        }
+        return hotelesDisponibles;
+    }
+
+
+    public boolean todasFechasPresentes(List<Date> fechas, Date fechaInicio, Date fechaFinal) {
+        Set<Date> todasLasFechas = new HashSet<>();
+
+        // Agregar todas las fechas entre fechaInicio y fechaFinal al conjunto
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(fechaInicio);
+        while (!cal.getTime().after(fechaFinal)) {
+            todasLasFechas.add(cal.getTime());
+            cal.add(Calendar.DATE, 1);
+        }
+
+        // Iterar sobre las fechas en el ArrayList y eliminarlas del conjunto
+        for (Date fecha : fechas) {
+            todasLasFechas.remove(fecha);
+        }
+
+        // Si el conjunto está vacío, significa que todas las fechas están en el ArrayList
+        return todasLasFechas.isEmpty();
+    }
+
+
+    //parsea las fechas que tiene cada hotel y lo convierte en un array de strings
+    public List<Date> parseFechasString(List<String> fechasString) {
+        List<Date> fechas = new ArrayList<>();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        for (String fechaStr : fechasString) {
+            try {
+                Date fecha = dateFormat.parse(fechaStr);
+                fechas.add(fecha);
+            } catch (ParseException e) {
+                System.err.println("Error al parsear fecha: " + fechaStr);
+            }
+        }
+        return fechas;
+    }
+
+    public static Date dateStringToDate(String fechaString) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            // Parsear el String a un objeto Date
+            Date parsedDate = dateFormat.parse(fechaString);
+            System.out.println("Fecha parseada en formato Date: " + parsedDate);
+            return parsedDate;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     public List<HotelDTO> findAll() {
         final List<Hotel> hotels = hotelRepository.findAll(Sort.by("id"));
