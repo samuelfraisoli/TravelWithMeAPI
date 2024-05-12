@@ -1,5 +1,6 @@
 package tfg.travel_with_me_a_p_i.model;
 
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -34,5 +35,11 @@ public class DireccionDTO {
     @NotNull
     @Size(max = 255)
     private String codPostal;
+
+    @NotNull
+    private Double latitud;
+
+    @NotNull
+    private Double longitud;
 
 }

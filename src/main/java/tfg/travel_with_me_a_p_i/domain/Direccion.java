@@ -37,4 +37,11 @@ public class Direccion {
     @Column(nullable = false)
     private String codPostal;
 
+    @Column(nullable = false)
+    private Double latitud;
+
+    @Column(nullable = false)
+    private Double longitud;
+
+
 }

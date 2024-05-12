@@ -62,6 +62,8 @@ public class DireccionService {
         direccionDTO.setCiudad(direccion.getCiudad());
         direccionDTO.setPais(direccion.getPais());
         direccionDTO.setCodPostal(direccion.getCodPostal());
+        direccionDTO.setLatitud(direccion.getLatitud());
+        direccionDTO.setLongitud(direccion.getLongitud());
         return direccionDTO;
     }
 
@@ -72,6 +74,8 @@ public class DireccionService {
         direccion.setCiudad(direccionDTO.getCiudad());
         direccion.setPais(direccionDTO.getPais());
         direccion.setCodPostal(direccionDTO.getCodPostal());
+        direccion.setLatitud(direccionDTO.getLatitud());
+        direccion.setLongitud(direccionDTO.getLongitud());
         return direccion;
     }
 

@@ -5,7 +5,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import tfg.travel_with_me_a_p_i.domain.Hotel;
 import tfg.travel_with_me_a_p_i.domain.Resena;
+import tfg.travel_with_me_a_p_i.domain.TrayectoVuelo;
 import tfg.travel_with_me_a_p_i.model.ResenaDTO;
+import tfg.travel_with_me_a_p_i.model.TrayectoVueloDTO;
 import tfg.travel_with_me_a_p_i.repos.HotelRepository;
 import tfg.travel_with_me_a_p_i.repos.ResenaRepository;
 import tfg.travel_with_me_a_p_i.util.NotFoundException;
@@ -30,11 +32,19 @@ public class ResenaService {
                 .toList();
     }
 
+    public List<ResenaDTO> findAllFiltroHotelId(Long idHotel) {
+        final List<Resena> resenas = resenaRepository.findAllFiltroHotelId(idHotel);
+        return resenas.stream()
+            .map(resena -> mapToDTO(resena, new ResenaDTO()))
+            .toList();
+    }
+
     public ResenaDTO get(final Long id) {
         return resenaRepository.findById(id)
                 .map(resena -> mapToDTO(resena, new ResenaDTO()))
                 .orElseThrow(NotFoundException::new);
     }
+
 
     public Long create(final ResenaDTO resenaDTO) {
         final Resena resena = new Resena();
