@@ -21,6 +21,6 @@ public interface HotelRepository extends JpaRepository<Hotel, Long> {
 
     boolean existsByDetallesHotelId(Long id);
 
-    @Query("SELECT h FROM Hotel h WHERE h.nombre LIKE %:nombre%")
+    @Query("SELECT h FROM Hotel h JOIN h.direccion d WHERE h.nombre LIKE %:nombre% OR d.ciudad LIKE %:nombre% OR d.pais LIKE %:nombre%")
     List<Hotel> findAllFiltro(String nombre);
 }
