@@ -63,6 +63,7 @@ public class DetallesHotelService {
         detallesHotelDTO.setWeb(detallesHotel.getWeb());
         detallesHotelDTO.setTelefono(detallesHotel.getTelefono());
         detallesHotelDTO.setComodidades(detallesHotel.getComodidades());
+        detallesHotelDTO.setPrecio(detallesHotel.getPrecio());
         return detallesHotelDTO;
     }
 
@@ -72,6 +73,7 @@ public class DetallesHotelService {
         detallesHotel.setWeb(detallesHotelDTO.getWeb());
         detallesHotel.setTelefono(detallesHotelDTO.getTelefono());
         detallesHotel.setComodidades(detallesHotelDTO.getComodidades());
+        detallesHotel.setPrecio(detallesHotelDTO.getPrecio());
         return detallesHotel;
     }
 

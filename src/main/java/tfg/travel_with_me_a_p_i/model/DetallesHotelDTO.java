@@ -1,5 +1,6 @@
 package tfg.travel_with_me_a_p_i.model;
 
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.Size;
 import java.util.List;
 import lombok.Getter;
@@ -22,5 +23,7 @@ public class DetallesHotelDTO {
     private String telefono;
 
     private List<@Size(max = 255) String> comodidades;
+
+    private double precio;
 
 }

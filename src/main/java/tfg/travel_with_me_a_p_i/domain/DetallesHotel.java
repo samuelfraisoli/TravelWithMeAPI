@@ -35,4 +35,6 @@ public class DetallesHotel {
     @JdbcTypeCode(SqlTypes.JSON)
     private List<String> comodidades;
 
+    @Column
+    private double precio;
 }
