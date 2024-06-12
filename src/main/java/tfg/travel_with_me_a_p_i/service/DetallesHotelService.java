@@ -32,9 +32,11 @@ public class DetallesHotelService {
     }
 
     public DetallesHotelDTO get(final Long id) {
-        return detallesHotelRepository.findById(id)
-                .map(detallesHotel -> mapToDTO(detallesHotel, new DetallesHotelDTO()))
-                .orElseThrow(NotFoundException::new);
+        final DetallesHotelDTO detallesHotelDTO =  detallesHotelRepository.findById(id)
+            .map(detallesHotel -> mapToDTO(detallesHotel, new DetallesHotelDTO()))
+            .orElseThrow(NotFoundException::new);
+        System.out.println(detallesHotelDTO.getDescripcion());
+        return detallesHotelDTO;
     }
 
     public Long create(final DetallesHotelDTO detallesHotelDTO) {

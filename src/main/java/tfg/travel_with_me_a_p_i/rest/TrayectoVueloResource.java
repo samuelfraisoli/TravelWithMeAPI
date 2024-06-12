@@ -18,7 +18,7 @@ import tfg.travel_with_me_a_p_i.util.CustomCollectors;
 
 
 @RestController
-@RequestMapping(value = "/api/trayectoVuelos", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/trayectoVuelos", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class TrayectoVueloResource {
 
     private final TrayectoVueloService trayectoVueloService;

@@ -18,7 +18,7 @@ import tfg.travel_with_me_a_p_i.util.ReferencedWarning;
 
 
 @RestController
-@RequestMapping(value = "/api/vuelos", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/vuelos", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class VueloResource {
 
     private final VueloService vueloService;

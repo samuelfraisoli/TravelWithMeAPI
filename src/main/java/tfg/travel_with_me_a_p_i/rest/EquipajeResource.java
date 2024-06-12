@@ -20,7 +20,7 @@ import tfg.travel_with_me_a_p_i.util.ReferencedWarning;
 
 
 @RestController
-@RequestMapping(value = "/api/equipajes", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/equipajes", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class EquipajeResource {
 
     private final EquipajeService equipajeService;

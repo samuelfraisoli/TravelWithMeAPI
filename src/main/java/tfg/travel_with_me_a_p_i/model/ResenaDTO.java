@@ -26,7 +26,7 @@ public class ResenaDTO {
     @Size(max = 2000)
     private String contenido;
 
-    private Integer nota;
+    private Float nota;
 
     private Long hotel;
 

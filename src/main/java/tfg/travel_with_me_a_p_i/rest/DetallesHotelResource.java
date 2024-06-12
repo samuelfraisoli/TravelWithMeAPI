@@ -20,7 +20,7 @@ import tfg.travel_with_me_a_p_i.util.ReferencedWarning;
 
 
 @RestController
-@RequestMapping(value = "/api/detallesHotels", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/detallesHotels", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class DetallesHotelResource {
 
     private final DetallesHotelService detallesHotelService;

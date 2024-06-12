@@ -20,7 +20,7 @@ import tfg.travel_with_me_a_p_i.util.ReferencedWarning;
 
 
 @RestController
-@RequestMapping(value = "/api/direccions", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/direccions", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class DireccionResource {
 
     private final DireccionService direccionService;

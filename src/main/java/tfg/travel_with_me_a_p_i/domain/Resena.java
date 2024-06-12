@@ -36,7 +36,7 @@ public class Resena {
     private String contenido;
 
     @Column
-    private Integer nota;
+    private Float nota;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hotel_id")
