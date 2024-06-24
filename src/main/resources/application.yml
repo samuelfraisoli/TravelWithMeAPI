@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: ${JDBC_DATABASE_URL:jdbc:mysql://localhost:3306/TravelWithMeAPI?serverTimezone=UTC}
+    url: ${JDBC_DATABASE_URL:jdbc:mysql://twm-db.cnu0imq06q2h.eu-west-3.rds.amazonaws.com:3306/TravelWithMeAPI?serverTimezone=UTC}
     username: ${JDBC_DATABASE_USERNAME:root}
-    password: ${JDBC_DATABASE_PASSWORD:}
+    password: ${JDBC_DATABASE_PASSWORD:12345678}
     dbcp2:
       max-wait-millis: 30000
       validation-query: /* ping */ select 1
@@ -18,6 +18,9 @@ spring:
             non_contextual_creation: true
         id:
           new_generator_mappings: true
+  profiles:
+    active: local
+
 error:
   handling:
     http-status-in-json-response: true

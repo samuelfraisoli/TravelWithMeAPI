@@ -24,6 +24,6 @@ public class DetallesHotelDTO {
 
     private List<@Size(max = 255) String> comodidades;
 
-    private double precio;
+    private Double precio;
 
 }

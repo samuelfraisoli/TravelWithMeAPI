@@ -27,13 +27,12 @@ import { ErrorComponent } from './error/error.component';
 export const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
-    title: $localize`:@@home.index.headline:Welcome to your new app!`
+    component: HomeComponent
   },
   {
     path: 'vuelos',
     component: VueloListComponent,
-    title: $localize`:@@vuelo.list.headline:Vueloes`
+    title: $localize`:@@vuelo.list.headline:Vuelos`
   },
   {
     path: 'vuelos/add',
@@ -48,7 +47,7 @@ export const routes: Routes = [
   {
     path: 'trayectoVuelos',
     component: TrayectoVueloListComponent,
-    title: $localize`:@@trayectoVuelo.list.headline:Trayecto Vueloes`
+    title: $localize`:@@trayectoVuelo.list.headline:Trayecto Vuelos`
   },
   {
     path: 'trayectoVuelos/add',
@@ -63,7 +62,7 @@ export const routes: Routes = [
   {
     path: 'hotels',
     component: HotelListComponent,
-    title: $localize`:@@hotel.list.headline:Hotels`
+    title: $localize`:@@hotel.list.headline:Hoteles`
   },
   {
     path: 'hotels/add',
@@ -78,7 +77,7 @@ export const routes: Routes = [
   {
     path: 'aeropuertos',
     component: AeropuertoListComponent,
-    title: $localize`:@@aeropuerto.list.headline:Aeropuertoes`
+    title: $localize`:@@aeropuerto.list.headline:Aeropuertos`
   },
   {
     path: 'aeropuertos/add',
@@ -93,47 +92,47 @@ export const routes: Routes = [
   {
     path: 'direccions',
     component: DireccionListComponent,
-    title: $localize`:@@direccion.list.headline:Direccions`
+    title: $localize`:@@direccion.list.headline:Direcciones`
   },
   {
     path: 'direccions/add',
     component: DireccionAddComponent,
-    title: $localize`:@@direccion.add.headline:Add Direccion`
+    title: $localize`:@@direccion.add.headline:Add Dirección`
   },
   {
     path: 'direccions/edit/:id',
     component: DireccionEditComponent,
-    title: $localize`:@@direccion.edit.headline:Edit Direccion`
+    title: $localize`:@@direccion.edit.headline:Edit Dirección`
   },
   {
     path: 'resenas',
     component: ResenaListComponent,
-    title: $localize`:@@resena.list.headline:Resenas`
+    title: $localize`:@@resena.list.headline:Reseñas`
   },
   {
     path: 'resenas/add',
     component: ResenaAddComponent,
-    title: $localize`:@@resena.add.headline:Add Resena`
+    title: $localize`:@@resena.add.headline:Add Reseña`
   },
   {
     path: 'resenas/edit/:id',
     component: ResenaEditComponent,
-    title: $localize`:@@resena.edit.headline:Edit Resena`
+    title: $localize`:@@resena.edit.headline:Edit Reseña`
   },
   {
     path: 'detallesHotels',
     component: DetallesHotelListComponent,
-    title: $localize`:@@detallesHotel.list.headline:Detalles Hotels`
+    title: $localize`:@@detallesHotel.list.headline:Detalles de los Hoteles`
   },
   {
     path: 'detallesHotels/add',
     component: DetallesHotelAddComponent,
-    title: $localize`:@@detallesHotel.add.headline:Add Detalles Hotel`
+    title: $localize`:@@detallesHotel.add.headline:Add Detalles del Hotel`
   },
   {
     path: 'detallesHotels/edit/:id',
     component: DetallesHotelEditComponent,
-    title: $localize`:@@detallesHotel.edit.headline:Edit Detalles Hotel`
+    title: $localize`:@@detallesHotel.edit.headline:Edit Detalles del Hotel`
   },
   {
     path: 'error',

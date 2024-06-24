@@ -36,5 +36,5 @@ public class DetallesHotel {
     private List<String> comodidades;
 
     @Column
-    private double precio;
+    private Double precio;
 }
