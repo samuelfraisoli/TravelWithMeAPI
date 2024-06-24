@@ -1,3 +1,7 @@
 # TravelWithMeAPI
 
-TravelWithMeAPI is a RESTful API web service designed to provide hotel and flights data to TravelWithMeAPP.
+TravelWithMeAPI es un servicio web API REST diseñado para crear, modificar, eliminar y proporcionar mediante solicitudes HTTP datos de vuelos y hoteles.
+
+# Tecnologías utilizadas
+El backend de la API está desarrollado utilizando Spring Boot y Spring Web.
+El frontend está desarrollado en Angular.
