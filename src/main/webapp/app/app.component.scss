@@ -1,1 +1,26 @@
+.background-container {
+    background-image: url('/assets/background.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; /* Asegura que el fondo ocupe toda la altura de la ventana */
+    margin: 0;
+    padding: 0;
+  }
+
+.background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(52, 51, 94, 0.603); 
+    z-index: 1;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+}
+
 

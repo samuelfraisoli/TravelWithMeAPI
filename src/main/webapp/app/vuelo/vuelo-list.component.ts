@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { ErrorHandler } from 'app/common/error-handler.injectable';
 import { VueloService } from 'app/vuelo/vuelo.service';
 import { VueloDTO } from 'app/vuelo/vuelo.model';
+import { PaginationService } from 'app/pagination/pagination-service';
 
 
 @Component({
@@ -17,14 +18,19 @@ export class VueloListComponent implements OnInit, OnDestroy {
   vueloService = inject(VueloService);
   errorHandler = inject(ErrorHandler);
   router = inject(Router);
+  paginationService = inject(PaginationService)
   vueloes?: VueloDTO[];
   navigationSubscription?: Subscription;
 
+  
+  currentPage: number = 1;
+  totalPages: number = 0;
+
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
-      confirm: $localize`:@@delete.confirm:Do you really want to delete this element? This cannot be undone.`,
-      deleted: $localize`:@@vuelo.delete.success:Vuelo was removed successfully.`,
-      'vuelo.trayectoVuelo.vuelo.referenced': $localize`:@@vuelo.trayectoVuelo.vuelo.referenced:This entity is still referenced by Trayecto Vuelo ${details?.id} via field Vuelo.`
+      confirm: $localize`:@@delete.confirm:¿Quieres eliminar el elemento?`,
+      deleted: $localize`:@@vuelo.delete.success:Vuelo eliminado correctamente.`,
+      'vuelo.trayectoVuelo.vuelo.referenced': $localize`:@@vuelo.trayectoVuelo.vuelo.referenced:Esta entidad todavía tiene una referencia a Trayecto Vuelo ${details?.id} a través del campo Vuelo.`
     };
     return messages[key];
   }
@@ -45,9 +51,38 @@ export class VueloListComponent implements OnInit, OnDestroy {
   loadData() {
     this.vueloService.getAllVueloes()
         .subscribe({
-          next: (data) => this.vueloes = data,
+          //next: (data) => this.vueloes = data,
+          next: (data) => {
+            this.paginationService.setItems(data, 10);
+            this.loadPage(1);
+          },
           error: (error) => this.errorHandler.handleServerError(error.error)
         });
+  }
+
+  loadPage(page: number): void {
+    const paginatedResult = this.paginationService.getPage<VueloDTO>(page);
+    this.vueloes = paginatedResult.items;
+    this.currentPage = paginatedResult.currentPage;
+    this.totalPages = paginatedResult.totalPages;
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      const paginatedResult = this.paginationService.nextPage<VueloDTO>();
+      this.vueloes = paginatedResult.items;
+      this.currentPage = paginatedResult.currentPage;
+      this.totalPages = paginatedResult.totalPages;
+    }
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      const paginatedResult = this.paginationService.previousPage<VueloDTO>();
+      this.vueloes = paginatedResult.items;
+      this.currentPage = paginatedResult.currentPage;
+      this.totalPages = paginatedResult.totalPages;
+    }
   }
 
   confirmDelete(id: number) {

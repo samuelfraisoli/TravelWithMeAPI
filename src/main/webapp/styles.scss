@@ -1,2 +1,12 @@
 @import 'custom';
 @import 'bootstrap/scss/bootstrap.scss';
+
+p, h1, h2, h3, h4, h5, label {
+    color: #ffffff;
+  }
+
+.table-responsive {
+    border-radius: 5px;
+    background-color: whitesmoke;
+    margin-bottom: 15px;
+}

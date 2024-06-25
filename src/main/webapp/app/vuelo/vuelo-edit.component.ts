@@ -39,7 +39,7 @@ export class VueloEditComponent implements OnInit {
 
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
-      updated: $localize`:@@vuelo.update.success:Vuelo was updated successfully.`
+      updated: $localize`:@@vuelo.update.success:Vuelo creado correctamente.`
     };
     return messages[key];
   }

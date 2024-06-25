@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: ${JDBC_DATABASE_URL:jdbc:mysql://twm-db.cnu0imq06q2h.eu-west-3.rds.amazonaws.com:3306/TravelWithMeAPI?serverTimezone=UTC}
-    username: ${JDBC_DATABASE_USERNAME:root}
-    password: ${JDBC_DATABASE_PASSWORD:12345678}
+    url: ${JDBC_DATABASE_URL:}
+    username: ${JDBC_DATABASE_USERNAME:}
+    password: ${JDBC_DATABASE_PASSWORD:}
     dbcp2:
       max-wait-millis: 30000
       validation-query: /* ping */ select 1
