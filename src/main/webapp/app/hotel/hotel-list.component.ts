@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { ErrorHandler } from 'app/common/error-handler.injectable';
 import { HotelService } from 'app/hotel/hotel.service';
 import { HotelDTO } from 'app/hotel/hotel.model';
+import { PaginationService } from 'app/pagination/pagination-service';
 
 
 @Component({
@@ -17,14 +18,18 @@ export class HotelListComponent implements OnInit, OnDestroy {
   hotelService = inject(HotelService);
   errorHandler = inject(ErrorHandler);
   router = inject(Router);
+  paginationService = inject(PaginationService)
   hotels?: HotelDTO[];
   navigationSubscription?: Subscription;
 
+  currentPage: number = 1;
+  totalPages: number = 1;
+
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
-      confirm: $localize`:@@delete.confirm:Do you really want to delete this element? This cannot be undone.`,
-      deleted: $localize`:@@hotel.delete.success:Hotel was removed successfully.`,
-      'hotel.resena.hotel.referenced': $localize`:@@hotel.resena.hotel.referenced:This entity is still referenced by Resena ${details?.id} via field Hotel.`
+      confirm: $localize`:@@delete.confirm:¿Quieres eliminar este elemento?`,
+      deleted: $localize`:@@hotel.delete.success:Hotel eliminado correctamente.`,
+      'hotel.resena.hotel.referenced': $localize`:@@hotel.resena.hotel.referenced:Esta entidad está referenciada por Reseña ${details?.id} por el campo Hotel.`
     };
     return messages[key];
   }
@@ -45,9 +50,37 @@ export class HotelListComponent implements OnInit, OnDestroy {
   loadData() {
     this.hotelService.getAllHotels()
         .subscribe({
-          next: (data) => this.hotels = data,
+          next: (data) => {
+            this.paginationService.setItems(data, 10);
+            this.loadPage(1);
+          },
           error: (error) => this.errorHandler.handleServerError(error.error)
         });
+  }
+
+  loadPage(page: number): void {
+    const paginatedResult = this.paginationService.getPage<HotelDTO>(page);
+    this.hotels = paginatedResult.items;
+    this.currentPage = paginatedResult.currentPage;
+    this.totalPages = paginatedResult.totalPages;
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      const paginatedResult = this.paginationService.nextPage<HotelDTO>();
+      this.hotels = paginatedResult.items;
+      this.currentPage = paginatedResult.currentPage;
+      this.totalPages = paginatedResult.totalPages;
+    }
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      const paginatedResult = this.paginationService.previousPage<HotelDTO>();
+      this.hotels = paginatedResult.items;
+      this.currentPage = paginatedResult.currentPage;
+      this.totalPages = paginatedResult.totalPages;
+    }
   }
 
   confirmDelete(id: number) {

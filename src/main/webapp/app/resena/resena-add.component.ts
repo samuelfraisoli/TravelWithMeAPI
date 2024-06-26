@@ -34,7 +34,7 @@ export class ResenaAddComponent implements OnInit {
 
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
-      created: $localize`:@@resena.create.success:Resena was created successfully.`
+      created: $localize`:@@resena.create.success:Reseña creada correctamente.`
     };
     return messages[key];
   }

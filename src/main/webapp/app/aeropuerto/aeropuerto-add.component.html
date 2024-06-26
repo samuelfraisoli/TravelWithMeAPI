@@ -1,7 +1,7 @@
 <div class="d-flex flex-wrap mb-4">
-    <h1 class="flex-grow-1" i18n="@@aeropuerto.add.headline">Add Aeropuerto</h1>
+    <h1 class="flex-grow-1" i18n="@@aeropuerto.add.headline">Crea un Aeropuerto</h1>
     <div>
-        <a routerLink="/aeropuertos" class="btn btn-secondary" i18n="@@aeropuerto.add.back">Back to list</a>
+        <a routerLink="/aeropuertos" class="btn btn-secondary" i18n="@@aeropuerto.add.back">Volver</a>
     </div>
 </div>
 <form [formGroup]="addForm" (ngSubmit)="handleSubmit()">
@@ -9,5 +9,5 @@
     <app-input-row [group]="addForm" field="ciudad" i18n-label="@@aeropuerto.ciudad.label" label="Ciudad" />
     <app-input-row [group]="addForm" field="ciudadAbrev" i18n-label="@@aeropuerto.ciudadAbrev.label" label="Ciudad Abrev" />
     <app-input-row [group]="addForm" field="pais" i18n-label="@@aeropuerto.pais.label" label="Pais" />
-    <input type="submit" i18n-value="@@aeropuerto.add.headline" value="Add Aeropuerto" class="btn btn-primary mt-4" />
+    <input type="submit" i18n-value="@@aeropuerto.add.headline" value="Crear Aeropuerto" class="btn btn-primary mt-4" />
 </form>

@@ -1,7 +1,7 @@
 <div class="d-flex flex-wrap mb-4">
-    <h1 class="flex-grow-1" i18n="@@resena.edit.headline">Edit Resena</h1>
+    <h1 class="flex-grow-1" i18n="@@resena.edit.headline">Editar Reseña</h1>
     <div>
-        <a routerLink="/resenas" class="btn btn-secondary" i18n="@@resena.edit.back">Back to list</a>
+        <a routerLink="/resenas" class="btn btn-secondary" i18n="@@resena.edit.back">Volver</a>
     </div>
 </div>
 <form [formGroup]="editForm" (ngSubmit)="handleSubmit()">
@@ -12,5 +12,5 @@
     <app-input-row [group]="editForm" field="contenido" i18n-label="@@resena.contenido.label" label="Contenido" />
     <app-input-row [group]="editForm" field="nota" rowType="number" i18n-label="@@resena.nota.label" label="Nota" />
     <app-input-row [group]="editForm" field="hotel" rowType="select" [options]="hotelValues" i18n-label="@@resena.hotel.label" label="Hotel" />
-    <input type="submit" i18n-value="@@resena.edit.headline" value="Edit Resena" class="btn btn-primary mt-4" />
+    <input type="submit" i18n-value="@@resena.edit.headline" value="Editar Reseña" class="btn btn-primary mt-4" />
 </form>

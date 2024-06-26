@@ -1,7 +1,7 @@
 <div class="d-flex flex-wrap mb-4">
-    <h1 class="flex-grow-1" i18n="@@direccion.add.headline">Add Direccion</h1>
+    <h1 class="flex-grow-1" i18n="@@direccion.add.headline">Crea una Dirección</h1>
     <div>
-        <a routerLink="/direccions" class="btn btn-secondary" i18n="@@direccion.add.back">Back to list</a>
+        <a routerLink="/direccions" class="btn btn-secondary" i18n="@@direccion.add.back">Volver</a>
     </div>
 </div>
 <form [formGroup]="addForm" (ngSubmit)="handleSubmit()">
@@ -11,5 +11,5 @@
     <app-input-row [group]="addForm" field="ciudad" i18n-label="@@direccion.ciudad.label" label="Ciudad" />
     <app-input-row [group]="addForm" field="pais" i18n-label="@@direccion.pais.label" label="Pais" />
     <app-input-row [group]="addForm" field="codPostal" i18n-label="@@direccion.codPostal.label" label="Cod Postal" />
-    <input type="submit" i18n-value="@@direccion.add.headline" value="Add Direccion" class="btn btn-primary mt-4" />
+    <input type="submit" i18n-value="@@direccion.add.headline" value="Crear Dirección" class="btn btn-primary mt-4" />
 </form>

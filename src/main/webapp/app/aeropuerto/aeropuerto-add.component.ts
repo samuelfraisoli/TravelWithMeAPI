@@ -29,7 +29,7 @@ export class AeropuertoAddComponent {
 
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
-      created: $localize`:@@aeropuerto.create.success:Aeropuerto was created successfully.`
+      created: $localize`:@@aeropuerto.create.success:Aeropuerto creado correctamente.`
     };
     return messages[key];
   }

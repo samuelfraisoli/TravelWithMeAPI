@@ -35,8 +35,8 @@ export class HotelAddComponent implements OnInit {
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
       created: $localize`:@@hotel.create.success:Hotel was created successfully.`,
-      HOTEL_DIRECCION_UNIQUE: $localize`:@@Exists.hotel.direccion:This Direccion is already referenced by another Hotel.`,
-      HOTEL_DETALLES_HOTEL_UNIQUE: $localize`:@@Exists.hotel.detallesHotel:This Detalles Hotel is already referenced by another Hotel.`
+      HOTEL_DIRECCION_UNIQUE: $localize`:@@Exists.hotel.direccion:Esta Dirección ya está referenciada por otro Hotel.`,
+      HOTEL_DETALLES_HOTEL_UNIQUE: $localize`:@@Exists.hotel.detallesHotel:Estos Detalles ya están referenciados por otro Hotel.`
     };
     return messages[key];
   }

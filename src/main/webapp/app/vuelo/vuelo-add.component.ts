@@ -36,7 +36,7 @@ export class VueloAddComponent implements OnInit {
 
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
-      created: $localize`:@@vuelo.create.success:Vuelo was created successfully.`
+      created: $localize`:@@vuelo.create.success:Vuelo se ha creado correctamente.`
     };
     return messages[key];
   }

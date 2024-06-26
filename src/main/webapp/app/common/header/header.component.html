@@ -11,16 +11,20 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarToggle">
                 <ul class="navbar-nav ms-auto">
-                    <li class="navbar-item">
-                        <a routerLink="/" class="nav-link" i18n="@@navigation.home">Home</a>
-                    </li>
+                    
                     <li class="navbar-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" id="navbarEntitiesLink" role="button"
-                                aria-expanded="false" i18n="@@navigation.entities">Entidades</a>
+                                aria-expanded="false" i18n="@@navigation.entities">Vuelos</a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarEntitiesLink">
                             <li><a routerLink="/vuelos" class="dropdown-item" i18n="@@vuelo.list.headline">Vuelos</a></li>
                             <li><a routerLink="/trayectoVuelos" class="dropdown-item" i18n="@@trayectoVuelo.list.headline">Trayectos de vuelo</a></li>
                             <li><a routerLink="/aeropuertos" class="dropdown-item" i18n="@@aeropuerto.list.headline">Aeropuertos</a></li>
+                        </ul>
+                    </li>
+                    <li class="navbar-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" id="navbarEntitiesLink" role="button"
+                                aria-expanded="false" i18n="@@navigation.entities">Hoteles</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarEntitiesLink">
                             <li><a routerLink="/hotels" class="dropdown-item" i18n="@@hotel.list.headline">Hoteles</a></li>
                             <li><a routerLink="/direccions" class="dropdown-item" i18n="@@direccion.list.headline">Direcciones</a></li>
                             <li><a routerLink="/resenas" class="dropdown-item" i18n="@@resena.list.headline">Reseñas</a></li>

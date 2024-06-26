@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { ErrorHandler } from 'app/common/error-handler.injectable';
 import { TrayectoVueloService } from 'app/trayecto-vuelo/trayecto-vuelo.service';
 import { TrayectoVueloDTO } from 'app/trayecto-vuelo/trayecto-vuelo.model';
+import { PaginationService } from 'app/pagination/pagination-service';
 
 
 @Component({
@@ -17,13 +18,17 @@ export class TrayectoVueloListComponent implements OnInit, OnDestroy {
   trayectoVueloService = inject(TrayectoVueloService);
   errorHandler = inject(ErrorHandler);
   router = inject(Router);
-  trayectoVueloes?: TrayectoVueloDTO[];
+  paginationService = inject(PaginationService)
+  flightSegments?: TrayectoVueloDTO[];
   navigationSubscription?: Subscription;
+
+  currentPage: number = 1;
+  totalPages: number = 1;
 
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
-      confirm: $localize`:@@delete.confirm:Do you really want to delete this element? This cannot be undone.`,
-      deleted: $localize`:@@trayectoVuelo.delete.success:Trayecto Vuelo was removed successfully.`    };
+      confirm: $localize`:@@delete.confirm:¿Quieres eliminar el elemento?.`,
+      deleted: $localize`:@@trayectoVuelo.delete.success:Trayecto de vuelo eliminado correctamente.`    };
     return messages[key];
   }
 
@@ -43,9 +48,37 @@ export class TrayectoVueloListComponent implements OnInit, OnDestroy {
   loadData() {
     this.trayectoVueloService.getAllTrayectoVueloes()
         .subscribe({
-          next: (data) => this.trayectoVueloes = data,
+          next: (data) => {
+            this.paginationService.setItems(data, 10);
+            this.loadPage(1);
+          },
           error: (error) => this.errorHandler.handleServerError(error.error)
         });
+  }
+
+  loadPage(page: number): void {
+    const paginatedResult = this.paginationService.getPage<TrayectoVueloDTO>(page);
+    this.flightSegments = paginatedResult.items;
+    this.currentPage = paginatedResult.currentPage;
+    this.totalPages = paginatedResult.totalPages;
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      const paginatedResult = this.paginationService.nextPage<TrayectoVueloDTO>();
+      this.flightSegments = paginatedResult.items;
+      this.currentPage = paginatedResult.currentPage;
+      this.totalPages = paginatedResult.totalPages;
+    }
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      const paginatedResult = this.paginationService.previousPage<TrayectoVueloDTO>();
+      this.flightSegments = paginatedResult.items;
+      this.currentPage = paginatedResult.currentPage;
+      this.totalPages = paginatedResult.totalPages;
+    }
   }
 
   confirmDelete(id: number) {

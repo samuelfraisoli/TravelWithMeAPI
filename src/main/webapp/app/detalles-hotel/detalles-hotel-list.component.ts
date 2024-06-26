@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { ErrorHandler } from 'app/common/error-handler.injectable';
 import { DetallesHotelService } from 'app/detalles-hotel/detalles-hotel.service';
 import { DetallesHotelDTO } from 'app/detalles-hotel/detalles-hotel.model';
+import { PaginationService } from 'app/pagination/pagination-service';
 
 
 @Component({
@@ -17,14 +18,18 @@ export class DetallesHotelListComponent implements OnInit, OnDestroy {
   detallesHotelService = inject(DetallesHotelService);
   errorHandler = inject(ErrorHandler);
   router = inject(Router);
-  detallesHotels?: DetallesHotelDTO[];
+  paginationService = inject(PaginationService)
+  hotelsDetails?: DetallesHotelDTO[];
   navigationSubscription?: Subscription;
+
+  currentPage: number = 1;
+  totalPages: number = 1;
 
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
-      confirm: $localize`:@@delete.confirm:Do you really want to delete this element? This cannot be undone.`,
-      deleted: $localize`:@@detallesHotel.delete.success:Detalles Hotel was removed successfully.`,
-      'detallesHotel.hotel.detallesHotel.referenced': $localize`:@@detallesHotel.hotel.detallesHotel.referenced:This entity is still referenced by Hotel ${details?.id} via field Detalles Hotel.`
+      confirm: $localize`:@@delete.confirm:¿Quieres eliminar este elemento?`,
+      deleted: $localize`:@@detallesHotel.delete.success:Detalles Hotel eliminado correctamente.`,
+      'detallesHotel.hotel.detallesHotel.referenced': $localize`:@@detallesHotel.hotel.detallesHotel.referenced:Esta entidad está referenciada por ${details?.id} por el campo Detalles Hotel.`
     };
     return messages[key];
   }
@@ -45,9 +50,37 @@ export class DetallesHotelListComponent implements OnInit, OnDestroy {
   loadData() {
     this.detallesHotelService.getAllDetallesHotels()
         .subscribe({
-          next: (data) => this.detallesHotels = data,
+          next: (data) => {
+            this.paginationService.setItems(data, 3);
+            this.loadPage(1);
+          },
           error: (error) => this.errorHandler.handleServerError(error.error)
         });
+  }
+
+  loadPage(page: number): void {
+    const paginatedResult = this.paginationService.getPage<DetallesHotelDTO>(page);
+    this.hotelsDetails = paginatedResult.items;
+    this.currentPage = paginatedResult.currentPage;
+    this.totalPages = paginatedResult.totalPages;
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      const paginatedResult = this.paginationService.nextPage<DetallesHotelDTO>();
+      this.hotelsDetails = paginatedResult.items;
+      this.currentPage = paginatedResult.currentPage;
+      this.totalPages = paginatedResult.totalPages;
+    }
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      const paginatedResult = this.paginationService.previousPage<DetallesHotelDTO>();
+      this.hotelsDetails = paginatedResult.items;
+      this.currentPage = paginatedResult.currentPage;
+      this.totalPages = paginatedResult.totalPages;
+    }
   }
 
   confirmDelete(id: number) {

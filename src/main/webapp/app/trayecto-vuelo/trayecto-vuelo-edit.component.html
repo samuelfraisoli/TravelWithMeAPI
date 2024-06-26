@@ -1,11 +1,10 @@
 <div class="d-flex flex-wrap mb-4">
-    <h1 class="flex-grow-1" i18n="@@trayectoVuelo.edit.headline">Edit Trayecto Vuelo</h1>
+    <h1 class="flex-grow-1" i18n="@@trayectoVuelo.edit.headline">Editar Trayecto de Vuelo</h1>
     <div>
-        <a routerLink="/trayectoVuelos" class="btn btn-secondary" i18n="@@trayectoVuelo.edit.back">Back to list</a>
+        <a routerLink="/trayectoVuelos" class="btn btn-secondary" i18n="@@trayectoVuelo.edit.back">Volver</a>
     </div>
 </div>
 <form [formGroup]="editForm" (ngSubmit)="handleSubmit()">
-    <input type="submit" i18n-value="@@trayectoVuelo.edit.headline" value="Edit Trayecto Vuelo" class="btn btn-primary mt-4 mb-4" />
     <app-input-row [group]="editForm" field="id" rowType="number" i18n-label="@@trayectoVuelo.id.label" label="Id" />
     <app-input-row [group]="editForm" field="idTrayecto" i18n-label="@@trayectoVuelo.idTrayecto.label" label="Id Trayecto" />
     <app-input-row [group]="editForm" field="aerolinea" i18n-label="@@trayectoVuelo.aerolinea.label" label="Aerolinea" />
@@ -20,5 +19,5 @@
     <app-input-row [group]="editForm" field="vuelo" rowType="select" [options]="vueloValues" i18n-label="@@trayectoVuelo.vuelo.label" label="Vuelo" />
     <app-input-row [group]="editForm" field="origen" rowType="select" [options]="origenValues" i18n-label="@@trayectoVuelo.origen.label" label="Origen" />
     <app-input-row [group]="editForm" field="destino" rowType="select" [options]="destinoValues" i18n-label="@@trayectoVuelo.destino.label" label="Destino" />
-    <input type="submit" i18n-value="@@trayectoVuelo.edit.headline" value="Edit Trayecto Vuelo" class="btn btn-primary mt-4" />
+    <input type="submit" i18n-value="@@trayectoVuelo.edit.headline" value="Editar Trayecto Vuelo" class="btn btn-primary mt-4" />
 </form>

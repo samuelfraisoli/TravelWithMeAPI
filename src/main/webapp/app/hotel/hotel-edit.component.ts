@@ -37,9 +37,9 @@ export class HotelEditComponent implements OnInit {
 
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
-      updated: $localize`:@@hotel.update.success:Hotel was updated successfully.`,
-      HOTEL_DIRECCION_UNIQUE: $localize`:@@Exists.hotel.direccion:This Direccion is already referenced by another Hotel.`,
-      HOTEL_DETALLES_HOTEL_UNIQUE: $localize`:@@Exists.hotel.detallesHotel:This Detalles Hotel is already referenced by another Hotel.`
+      updated: $localize`:@@hotel.update.success:Hotel modificado correctamente.`,
+      HOTEL_DIRECCION_UNIQUE: $localize`:@@Exists.hotel.direccion:Esta Dirección ya está referenciada por otro Hotel.`,
+      HOTEL_DETALLES_HOTEL_UNIQUE: $localize`:@@Exists.hotel.detallesHotel:Estos Detalles del Hotel ya están referenciados por otro Hotel.`
     };
     return messages[key];
   }

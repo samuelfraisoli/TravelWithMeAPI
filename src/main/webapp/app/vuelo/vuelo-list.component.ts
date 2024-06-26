@@ -19,12 +19,12 @@ export class VueloListComponent implements OnInit, OnDestroy {
   errorHandler = inject(ErrorHandler);
   router = inject(Router);
   paginationService = inject(PaginationService)
-  vueloes?: VueloDTO[];
+  flights?: VueloDTO[];
   navigationSubscription?: Subscription;
 
   
   currentPage: number = 1;
-  totalPages: number = 0;
+  totalPages: number = 1;
 
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
@@ -62,7 +62,7 @@ export class VueloListComponent implements OnInit, OnDestroy {
 
   loadPage(page: number): void {
     const paginatedResult = this.paginationService.getPage<VueloDTO>(page);
-    this.vueloes = paginatedResult.items;
+    this.flights = paginatedResult.items;
     this.currentPage = paginatedResult.currentPage;
     this.totalPages = paginatedResult.totalPages;
   }
@@ -70,7 +70,7 @@ export class VueloListComponent implements OnInit, OnDestroy {
   nextPage(): void {
     if (this.currentPage < this.totalPages) {
       const paginatedResult = this.paginationService.nextPage<VueloDTO>();
-      this.vueloes = paginatedResult.items;
+      this.flights = paginatedResult.items;
       this.currentPage = paginatedResult.currentPage;
       this.totalPages = paginatedResult.totalPages;
     }
@@ -79,7 +79,7 @@ export class VueloListComponent implements OnInit, OnDestroy {
   previousPage(): void {
     if (this.currentPage > 1) {
       const paginatedResult = this.paginationService.previousPage<VueloDTO>();
-      this.vueloes = paginatedResult.items;
+      this.flights = paginatedResult.items;
       this.currentPage = paginatedResult.currentPage;
       this.totalPages = paginatedResult.totalPages;
     }

@@ -9,6 +9,7 @@ import { ErrorHandler } from 'app/common/error-handler.injectable';
 import { validJson } from 'app/common/utils';
 
 
+
 @Component({
   selector: 'app-detalles-hotel-add',
   standalone: true,
@@ -30,7 +31,7 @@ export class DetallesHotelAddComponent {
 
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
-      created: $localize`:@@detallesHotel.create.success:Detalles Hotel was created successfully.`
+      created: $localize`:@@detallesHotel.create.success:Detalles de Hotel creados correctamente.`
     };
     return messages[key];
   }

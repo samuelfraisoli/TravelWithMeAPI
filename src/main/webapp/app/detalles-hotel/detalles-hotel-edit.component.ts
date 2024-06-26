@@ -34,7 +34,7 @@ export class DetallesHotelEditComponent implements OnInit {
 
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
-      updated: $localize`:@@detallesHotel.update.success:Detalles Hotel was updated successfully.`
+      updated: $localize`:@@detallesHotel.update.success:Detalles de Hotel modificados correctamente.`
     };
     return messages[key];
   }

@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { ErrorHandler } from 'app/common/error-handler.injectable';
 import { AeropuertoService } from 'app/aeropuerto/aeropuerto.service';
 import { AeropuertoDTO } from 'app/aeropuerto/aeropuerto.model';
+import { PaginationService } from 'app/pagination/pagination-service';
 
 
 @Component({
@@ -17,15 +18,19 @@ export class AeropuertoListComponent implements OnInit, OnDestroy {
   aeropuertoService = inject(AeropuertoService);
   errorHandler = inject(ErrorHandler);
   router = inject(Router);
-  aeropuertoes?: AeropuertoDTO[];
+  paginationService = inject(PaginationService)
+  airports?: AeropuertoDTO[];
   navigationSubscription?: Subscription;
+
+  currentPage: number = 1;
+  totalPages: number = 1;
 
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
-      confirm: $localize`:@@delete.confirm:Do you really want to delete this element? This cannot be undone.`,
-      deleted: $localize`:@@aeropuerto.delete.success:Aeropuerto was removed successfully.`,
-      'aeropuerto.trayectoVuelo.origen.referenced': $localize`:@@aeropuerto.trayectoVuelo.origen.referenced:This entity is still referenced by Trayecto Vuelo ${details?.id} via field Origen.`,
-      'aeropuerto.trayectoVuelo.destino.referenced': $localize`:@@aeropuerto.trayectoVuelo.destino.referenced:This entity is still referenced by Trayecto Vuelo ${details?.id} via field Destino.`
+      confirm: $localize`:@@delete.confirm:¿Quieres eliminar este elemento?.`,
+      deleted: $localize`:@@aeropuerto.delete.success:Aeropuerto eliminado correctamente.`,
+      'aeropuerto.trayectoVuelo.origen.referenced': $localize`:@@aeropuerto.trayectoVuelo.origen.referenced:Esta entidad todavía está referenciada por Trayecto Vuelo ${details?.id} a través del campo Origen.`,
+      'aeropuerto.trayectoVuelo.destino.referenced': $localize`:@@aeropuerto.trayectoVuelo.destino.referenced:Esta entidad todavía está referenciada por Trayecto Vuelo ${details?.id} a través del campo Destino.`
     };
     return messages[key];
   }
@@ -46,9 +51,37 @@ export class AeropuertoListComponent implements OnInit, OnDestroy {
   loadData() {
     this.aeropuertoService.getAllAeropuertoes()
         .subscribe({
-          next: (data) => this.aeropuertoes = data,
+          next: (data) => {
+            this.paginationService.setItems(data, 10);
+            this.loadPage(1);
+          },
           error: (error) => this.errorHandler.handleServerError(error.error)
         });
+  }
+
+  loadPage(page: number): void {
+    const paginatedResult = this.paginationService.getPage<AeropuertoDTO>(page);
+    this.airports = paginatedResult.items;
+    this.currentPage = paginatedResult.currentPage;
+    this.totalPages = paginatedResult.totalPages;
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      const paginatedResult = this.paginationService.nextPage<AeropuertoDTO>();
+      this.airports = paginatedResult.items;
+      this.currentPage = paginatedResult.currentPage;
+      this.totalPages = paginatedResult.totalPages;
+    }
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      const paginatedResult = this.paginationService.previousPage<AeropuertoDTO>();
+      this.airports = paginatedResult.items;
+      this.currentPage = paginatedResult.currentPage;
+      this.totalPages = paginatedResult.totalPages;
+    }
   }
 
   confirmDelete(id: number) {

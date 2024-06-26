@@ -1,7 +1,7 @@
 <div class="d-flex flex-wrap mb-4">
-    <h1 class="flex-grow-1" i18n="@@direccion.edit.headline">Edit Direccion</h1>
+    <h1 class="flex-grow-1" i18n="@@direccion.edit.headline">Editar Dirección</h1>
     <div>
-        <a routerLink="/direccions" class="btn btn-secondary" i18n="@@direccion.edit.back">Back to list</a>
+        <a routerLink="/direccions" class="btn btn-secondary" i18n="@@direccion.edit.back">Volver</a>
     </div>
 </div>
 <form [formGroup]="editForm" (ngSubmit)="handleSubmit()">
@@ -11,6 +11,6 @@
     <app-input-row [group]="editForm" field="direccion2" i18n-label="@@direccion.direccion2.label" label="Direccion2" />
     <app-input-row [group]="editForm" field="ciudad" i18n-label="@@direccion.ciudad.label" label="Ciudad" />
     <app-input-row [group]="editForm" field="pais" i18n-label="@@direccion.pais.label" label="Pais" />
-    <app-input-row [group]="editForm" field="codPostal" i18n-label="@@direccion.codPostal.label" label="Cod Postal" />
-    <input type="submit" i18n-value="@@direccion.edit.headline" value="Edit Direccion" class="btn btn-primary mt-4" />
+    <app-input-row [group]="editForm" field="codPostal" i18n-label="@@direccion.codPostal.label" label="Código Postal" />
+    <input type="submit" i18n-value="@@direccion.edit.headline" value="Editar Dirección" class="btn btn-primary mt-4" />
 </form>

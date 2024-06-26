@@ -31,7 +31,7 @@ export class DireccionAddComponent {
 
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
-      created: $localize`:@@direccion.create.success:Direccion was created successfully.`
+      created: $localize`:@@direccion.create.success:Lairección ha sido creada correctamente.`
     };
     return messages[key];
   }

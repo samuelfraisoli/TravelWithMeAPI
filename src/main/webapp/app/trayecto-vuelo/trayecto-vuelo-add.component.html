@@ -1,7 +1,7 @@
 <div class="d-flex flex-wrap mb-4">
-    <h1 class="flex-grow-1" i18n="@@trayectoVuelo.add.headline">Add Trayecto Vuelo</h1>
+    <h1 class="flex-grow-1" i18n="@@trayectoVuelo.add.headline">Crea un Trayecto de Vuelo</h1>
     <div>
-        <a routerLink="/trayectoVuelos" class="btn btn-secondary" i18n="@@trayectoVuelo.add.back">Back to list</a>
+        <a routerLink="/trayectoVuelos" class="btn btn-secondary" i18n="@@trayectoVuelo.add.back">Volver</a>
     </div>
 </div>
 <form [formGroup]="addForm" (ngSubmit)="handleSubmit()">
@@ -18,5 +18,5 @@
     <app-input-row [group]="addForm" field="vuelo" rowType="select" [options]="vueloValues" i18n-label="@@trayectoVuelo.vuelo.label" label="Vuelo" />
     <app-input-row [group]="addForm" field="origen" rowType="select" [options]="origenValues" i18n-label="@@trayectoVuelo.origen.label" label="Origen" />
     <app-input-row [group]="addForm" field="destino" rowType="select" [options]="destinoValues" i18n-label="@@trayectoVuelo.destino.label" label="Destino" />
-    <input type="submit" i18n-value="@@trayectoVuelo.add.headline" value="Add Trayecto Vuelo" class="btn btn-primary mt-4" />
+    <input type="submit" i18n-value="@@trayectoVuelo.add.headline" value="Crear Trayecto Vuelo" class="btn btn-primary mt-4" />
 </form>

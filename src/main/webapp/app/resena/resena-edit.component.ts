@@ -37,7 +37,7 @@ export class ResenaEditComponent implements OnInit {
 
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
-      updated: $localize`:@@resena.update.success:Resena was updated successfully.`
+      updated: $localize`:@@resena.update.success:Resena modificada correctamente.`
     };
     return messages[key];
   }

@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { ErrorHandler } from 'app/common/error-handler.injectable';
 import { ResenaService } from 'app/resena/resena.service';
 import { ResenaDTO } from 'app/resena/resena.model';
+import { PaginationService } from 'app/pagination/pagination-service';
 
 
 @Component({
@@ -17,13 +18,17 @@ export class ResenaListComponent implements OnInit, OnDestroy {
   resenaService = inject(ResenaService);
   errorHandler = inject(ErrorHandler);
   router = inject(Router);
-  resenas?: ResenaDTO[];
+  paginationService = inject(PaginationService)
+  reviews?: ResenaDTO[];
   navigationSubscription?: Subscription;
+
+  currentPage: number = 1;
+  totalPages: number = 1;
 
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
-      confirm: $localize`:@@delete.confirm:Do you really want to delete this element? This cannot be undone.`,
-      deleted: $localize`:@@resena.delete.success:Resena was removed successfully.`    };
+      confirm: $localize`:@@delete.confirm:¿Quieres eliminar este elemento?`,
+      deleted: $localize`:@@resena.delete.success:Reseña eliminada correctamente.`    };
     return messages[key];
   }
 
@@ -43,9 +48,37 @@ export class ResenaListComponent implements OnInit, OnDestroy {
   loadData() {
     this.resenaService.getAllResenas()
         .subscribe({
-          next: (data) => this.resenas = data,
+          next: (data) => {
+            this.paginationService.setItems(data, 10);
+            this.loadPage(1);
+          },
           error: (error) => this.errorHandler.handleServerError(error.error)
         });
+  }
+
+  loadPage(page: number): void {
+    const paginatedResult = this.paginationService.getPage<ResenaDTO>(page);
+    this.reviews = paginatedResult.items;
+    this.currentPage = paginatedResult.currentPage;
+    this.totalPages = paginatedResult.totalPages;
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      const paginatedResult = this.paginationService.nextPage<ResenaDTO>();
+      this.reviews = paginatedResult.items;
+      this.currentPage = paginatedResult.currentPage;
+      this.totalPages = paginatedResult.totalPages;
+    }
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      const paginatedResult = this.paginationService.previousPage<ResenaDTO>();
+      this.reviews = paginatedResult.items;
+      this.currentPage = paginatedResult.currentPage;
+      this.totalPages = paginatedResult.totalPages;
+    }
   }
 
   confirmDelete(id: number) {

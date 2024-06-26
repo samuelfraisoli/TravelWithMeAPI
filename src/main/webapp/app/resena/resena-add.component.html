@@ -1,7 +1,7 @@
 <div class="d-flex flex-wrap mb-4">
-    <h1 class="flex-grow-1" i18n="@@resena.add.headline">Add Resena</h1>
+    <h1 class="flex-grow-1" i18n="@@resena.add.headline">Crea una reseña</h1>
     <div>
-        <a routerLink="/resenas" class="btn btn-secondary" i18n="@@resena.add.back">Back to list</a>
+        <a routerLink="/resenas" class="btn btn-secondary" i18n="@@resena.add.back">Volver</a>
     </div>
 </div>
 <form [formGroup]="addForm" (ngSubmit)="handleSubmit()">
@@ -11,5 +11,5 @@
     <app-input-row [group]="addForm" field="contenido" i18n-label="@@resena.contenido.label" label="Contenido" />
     <app-input-row [group]="addForm" field="nota" rowType="number" i18n-label="@@resena.nota.label" label="Nota" />
     <app-input-row [group]="addForm" field="hotel" rowType="select" [options]="hotelValues" i18n-label="@@resena.hotel.label" label="Hotel" />
-    <input type="submit" i18n-value="@@resena.add.headline" value="Add Resena" class="btn btn-primary mt-4" />
+    <input type="submit" i18n-value="@@resena.add.headline" value="Crear reseña" class="btn btn-primary mt-4" />
 </form>

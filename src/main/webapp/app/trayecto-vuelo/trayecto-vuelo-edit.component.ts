@@ -46,8 +46,8 @@ export class TrayectoVueloEditComponent implements OnInit {
 
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
-      updated: $localize`:@@trayectoVuelo.update.success:Trayecto Vuelo was updated successfully.`,
-      TRAYECTO_VUELO_ORIGEN_UNIQUE: $localize`:@@Exists.trayectoVuelo.origen:This Aeropuerto is already referenced by another Trayecto Vuelo.`
+      updated: $localize`:@@trayectoVuelo.update.success:Trayecto Vuelo modificado correctamente.`,
+      TRAYECTO_VUELO_ORIGEN_UNIQUE: $localize`:@@Exists.trayectoVuelo.origen:Este Aeropuerto contiene una referencia a un Tratecto Vuelo.`
     };
     return messages[key];
   }
