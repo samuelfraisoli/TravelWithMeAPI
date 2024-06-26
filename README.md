@@ -24,4 +24,4 @@ Despliegue en AWS
 
 # Imágenes
 
-![Landing Page](https://imgur.com/VG0SfWD))
+![Landing Page](https://i.imgur.com/VG0SfWD.png)
