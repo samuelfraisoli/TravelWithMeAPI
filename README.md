@@ -11,6 +11,11 @@ Backend de la API desarrollado en Java utilizando Spring Boot y Spring Web.
 Frontend desarrollado en Angular y Bootstrap.
 - El backend en Springboot sirve el frontend, y se comunica con él mediante solicitudes HTTP. De esta forma, le envía los datos de hoteles y vuelos que son mostrados a los usuarios.
 - Para la recepción de los datos de forma reactiva se utilizan los observables de la biblioteca RXJS.
+- Uso de Angular Reactive Forms para gestión de formularios, para la creación y modificación de entidades.
+
+Despliegue en AWS
+- La API se encuentra desplegada en Elastic Beanstalk de AWS
+- La Base de Datos está desplegada en RDS (Amazon Relational Database Service)
 
 
 # Futuras adiciones
