@@ -24,4 +24,7 @@ Despliegue en AWS
 
 # Imágenes
 
-![Landing Page](https://i.imgur.com/VG0SfWD.png)
+![Landing Page](https://i.imgur.com/cQYKnAu.png)
+![Flights List](https://i.imgur.com/O9fAF56.png)
+![Create Flight Menu](https://i.imgur.com/VG0SfWD.png)
+![Edit Flight Menu](https://i.imgur.com/YRBNFYf.png)
