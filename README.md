@@ -21,3 +21,7 @@ Despliegue en AWS
 # Futuras adiciones
 - Sistema de registro de usuarios
 - Carouseles que permitan ver las fotos de los hoteles
+
+# Imágenes
+
+![Landing Page](https://imgur.com/VG0SfWD))
