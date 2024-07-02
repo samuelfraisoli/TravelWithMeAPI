@@ -7,7 +7,6 @@ Backend de la API desarrollado en Java utilizando Spring Boot y Spring Web.
 - Base de datos MySQL.
 - Las conexiones a la base de datos son realizadas mediante Hibernate y Spring Data JPA.
 
-
 Frontend desarrollado en Angular y Bootstrap.
 - El backend en Springboot sirve el frontend, y se comunica con él mediante solicitudes HTTP. De esta forma, le envía los datos de hoteles y vuelos que son mostrados a los usuarios.
 - Para la recepción de los datos de forma reactiva se utilizan los observables de la biblioteca RXJS.
@@ -17,6 +16,8 @@ Despliegue en AWS
 - La API se encuentra desplegada en Elastic Beanstalk de AWS
 - La Base de Datos está desplegada en RDS (Amazon Relational Database Service)
 
+# Link a la API
+http://travelwithmeapi28061215-env.eba-avhznim2.eu-west-3.elasticbeanstalk.com/
 
 # Futuras adiciones
 - Sistema de registro de usuarios
