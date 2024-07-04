@@ -16,8 +16,7 @@ Despliegue en AWS
 - La API se encuentra desplegada en Elastic Beanstalk de AWS
 - La Base de Datos está desplegada en RDS (Amazon Relational Database Service)
 
-# Link a la API
-http://travelwithmeapi28061215-env.eba-avhznim2.eu-west-3.elasticbeanstalk.com/
+
 
 # Futuras adiciones
 - Sistema de registro de usuarios
