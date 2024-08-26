@@ -16,17 +16,13 @@
     </label>
     <div class="col-md-10">
         @if (rowType === 'text' || rowType === 'password' || rowType === 'email' || rowType === 'tel') {
-        <input [id]="field" [type]="rowType" [formControlName]="field"
-                class="form-control {{ getInputClasses() }}" />
+        <input [id]="field" [type]="rowType" [formControlName]="field" class="form-control {{ getInputClasses() }}" />
         } @else if (rowType === 'number') {
-        <input [id]="field" type="number" [formControlName]="field"
-                class="form-control {{ getInputClasses() }}" />
+        <input [id]="field" type="number" [formControlName]="field" class="form-control {{ getInputClasses() }}" />
         } @else if (rowType === 'textarea') {
-        <textarea [id]="field" [formControlName]="field"
-                class="form-control {{ getInputClasses() }}"></textarea>
+        <textarea [id]="field" [formControlName]="field" class="form-control {{ getInputClasses() }}"></textarea>
         } @else if (rowType === 'select') {
-        <select [id]="field" [formControlName]="field"
-                class="form-select {{ getInputClasses() }}">
+        <select [id]="field" [formControlName]="field" class="form-select {{ getInputClasses() }}">
             <option [ngValue]="null" i18n="@@select.empty.label">Please select</option>
             @for (option of optionsMap | keyvalue; track option.key) {
             <option [ngValue]="option.key">{{ option.value }}</option>

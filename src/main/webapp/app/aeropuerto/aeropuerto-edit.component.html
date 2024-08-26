@@ -5,10 +5,10 @@
     </div>
 </div>
 <form [formGroup]="editForm" (ngSubmit)="handleSubmit()">
-    <app-input-row [group]="editForm" field="id" rowType="number" i18n-label="@@aeropuerto.id.label" label="Id" />
-    <app-input-row [group]="editForm" field="nombre" i18n-label="@@aeropuerto.nombre.label" label="Nombre" />
-    <app-input-row [group]="editForm" field="ciudad" i18n-label="@@aeropuerto.ciudad.label" label="Ciudad" />
-    <app-input-row [group]="editForm" field="ciudadAbrev" i18n-label="@@aeropuerto.ciudadAbrev.label" label="Ciudad Abrev" />
-    <app-input-row [group]="editForm" field="pais" i18n-label="@@aeropuerto.pais.label" label="Pais" />
-    <input type="submit" i18n-value="@@aeropuerto.edit.headline" value="Editar Aeropuerto" class="btn btn-primary mt-4" />
+    <app-input-row [group]="editForm" field="id" rowType="number" label="Id" />
+    <app-input-row [group]="editForm" field="nombre" label="Nombre" />
+    <app-input-row [group]="editForm" field="ciudad" label="Ciudad" />
+    <app-input-row [group]="editForm" field="ciudadAbrev" label="Ciudad Abrev" />
+    <app-input-row [group]="editForm" field="pais" label="Pais" />
+    <input type="submit" value="Editar Aeropuerto" class="btn btn-primary mt-4" />
 </form>
