@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  db:
+    image: mariadb:10.4.28
+    container_name: mariadb
+    environment:
+      MARIADB_ROOT_PASSWORD: 1234  # Contraseña para el usuario root de MariaDB
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql  # Monta el volumen 'db_data' en '/var/lib/mysql'
+
+volumes:
+  db_data:  # Define el volumen 'db_data'

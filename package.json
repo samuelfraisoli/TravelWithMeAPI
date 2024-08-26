@@ -21,12 +21,13 @@
     "bootstrap": "^5.3.3",
     "http-status-codes": "^2.3.0",
     "rxjs": "~7.8.1",
+    "travel-with-me-a-p-i-frontend": "file:",
     "tslib": "^2.6.2",
     "zone.js": "~0.14.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.3.5",
-    "@angular/cli": "^17.3.5",
+    "@angular/cli": "^17.3.8",
     "@angular/compiler-cli": "^17.3.5",
     "@angular/localize": "^17.3.5",
     "@types/jasmine": "~5.1.0",
