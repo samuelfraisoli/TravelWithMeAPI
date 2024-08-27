@@ -75,12 +75,12 @@ export class ErrorHandler {
  */
 export function getGlobalErrorMessage(key: string, details?: any) {
   let globalErrorMessages: Record<string, string> = {
-    required: $localize`:@@required:Please provide a value.`,
-    maxlength: $localize`:@@maxlength:Your value must have a length of less then ${details?.requiredLength} characters.`,
-    validDouble: $localize`:@@valid.double:Please provide a valid floating point number.`,
-    validOffsetDateTime: $localize`:@@valid.offsetDateTime:Please provide a valid date with offset, for example "2026-01-23T14:55:00+01:00".`,
-    validJson: $localize`:@@valid.json:Please provide a valid JSON.`,
-    REQUIRED_NOT_NULL: $localize`:@@required:Please provide a value.`
+    required: `Campo requerido`,
+    maxlength: `La longitud máxima es de ${details?.requiredLength} caracteres.`,
+    validDouble: `Introduce un número decimal válido.`,
+    validOffsetDateTime: `Please provide a valid date with offset, for example "2026-01-23T14:55:00+01:00".`,
+    validJson: `Introduce un formato JSON válido.`,
+    REQUIRED_NOT_NULL:`Campo requerido.`
   };
   return globalErrorMessages[key];
 }

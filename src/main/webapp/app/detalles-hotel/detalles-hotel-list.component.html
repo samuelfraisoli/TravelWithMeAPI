@@ -1,20 +1,20 @@
 <div class="d-flex flex-wrap mb-4">
-    <h1 class="flex-grow-1" i18n="@@detallesHotel.list.headline">Detalles de los Hoteles</h1>
+    <h1 class="flex-grow-1">Detalles de los Hoteles</h1>
     <div>
-        <a routerLink="/detallesHotels/add" class="btn btn-primary ms-2" i18n="@@detallesHotel.list.createNew">Crear Detalles de Hotel</a>
+        <a routerLink="/detallesHotels/add" class="btn btn-primary ms-2">Crear Detalles de Hotel</a>
     </div>
 </div>
 @if (!hotelsDetails || hotelsDetails.length === 0) {
-<div i18n="@@detallesHotel.list.empty">No se han encontrado Detalles de Hotel.</div>
+<div>No se han encontrado Detalles de Hotel.</div>
 } @else {
 <div class="table-responsive">
     <table class="table table-striped table-hover align-middle">
         <thead>
             <tr>
-                <th scope="col"  i18n="@@detallesHotel.id.label">Id</th>
-                <th scope="col"  i18n="@@detallesHotel.web.label">Web</th>
-                <th scope="col"  i18n="@@detallesHotel.descripcion.label">Descripcion</th>
-                <th scope="col"  i18n="@@detallesHotel.telefono.label">Telefono</th>
+                <th scope="col">Id</th>
+                <th scope="col">Web</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Telefono</th>
                 <th><!-- --></th>
             </tr>
         </thead>
@@ -27,8 +27,8 @@
                 <td>{{ hotelDetails.telefono }}</td>
                 <td>
                     <div class="float-end text-nowrap">
-                        <a [routerLink]="['/detallesHotels/edit', hotelDetails.id]" class="btn btn-sm btn-outline-primary" i18n="@@detallesHotel.list.edit">Editar</a>
-                        <button type="button" (click)="confirmDelete(hotelDetails.id!)" class="btn btn-sm btn-outline-danger" i18n="@@detallesHotel.list.delete">Eliminar</button>
+                        <a [routerLink]="['/detallesHotels/edit', hotelDetails.id]" class="btn btn-sm btn-outline-primary" >Editar</a>
+                        <button type="button" (click)="confirmDelete(hotelDetails.id!)" class="btn btn-sm btn-outline-danger" >Eliminar</button>
                     </div>
                 </td>
             </tr>

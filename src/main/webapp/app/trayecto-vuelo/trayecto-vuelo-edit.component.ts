@@ -22,6 +22,8 @@ export class TrayectoVueloEditComponent implements OnInit {
   router = inject(Router);
   errorHandler = inject(ErrorHandler);
 
+  checkBoxEscalaIsChecked = false;
+
   vueloValues?: Map<number,string>;
   origenValues?: Map<number,string>;
   destinoValues?: Map<number,string>;
@@ -44,10 +46,15 @@ export class TrayectoVueloEditComponent implements OnInit {
     destino: new FormControl(null, [Validators.required])
   }, { updateOn: 'submit' });
 
+  onCheckBoxEscalaChange(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    this.checkBoxEscalaIsChecked = inputElement.checked;
+  }
+
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
-      updated: $localize`:@@trayectoVuelo.update.success:Trayecto Vuelo modificado correctamente.`,
-      TRAYECTO_VUELO_ORIGEN_UNIQUE: $localize`:@@Exists.trayectoVuelo.origen:Este Aeropuerto contiene una referencia a un Tratecto Vuelo.`
+      updated: `Trayecto Vuelo modificado correctamente.`,
+      TRAYECTO_VUELO_ORIGEN_UNIQUE: `Este Aeropuerto contiene una referencia a un Tratecto Vuelo.`
     };
     return messages[key];
   }

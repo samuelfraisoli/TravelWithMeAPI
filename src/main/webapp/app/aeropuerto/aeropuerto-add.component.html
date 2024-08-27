@@ -1,64 +1,13 @@
 <div class="d-flex flex-wrap mb-4">
-    <h1 class="flex-grow-1" i18n="@@aeropuerto.add.headline">Crea un Aeropuerto</h1>
+    <h1 class="flex-grow-1">Crea un Aeropuerto</h1>
     <div>
-        <a routerLink="/aeropuertos" class="btn btn-secondary" i18n="@@aeropuerto.add.back">Volver</a>
+        <a routerLink="/aeropuertos" class="btn btn-secondary">Volver</a>
     </div>
 </div>
 <form [formGroup]="addForm" (ngSubmit)="handleSubmit()">
-    <label for="nombre">Nombre</label>
-    <input
-      type="text"
-      id="nombre"
-      formControlName="nombre"
-      class="form-control"
-      placeholder="ej. Barajas"
-    />
-
-    <div class="invalid-feedback d-block">
-      {{ getError('nombre') }}
-    </div>
- 
-
-  
-    <label for="ciudad">Ciudad</label>
-    <input
-      type="text"
-      id="ciudad"
-      formControlName="ciudad"
-      class="form-control"
-      placeholder="ej. Madrid"
-    />
-    <div class="invalid-feedback d-block">
-      {{ getError('ciudad') }}
-    </div>
-  
-
- 
-    <label for="ciudadAbrev">Ciudad Abrev</label>
-    <input
-      type="text"
-      id="ciudadAbrev"
-      formControlName="ciudadAbrev"
-      class="form-control"
-      placeholder="ej. MDR"
-    />
-    <div class="invalid-feedback d-block">
-      {{ getError('ciudadAbrev') }}
-    </div>
-  
-
-  
-    <label for="pais">Pais</label>
-    <input
-      type="text"
-      id="pais"
-      formControlName="pais"
-      class="form-control"
-      placeholder="ej. España"
-    />
-    <div class="invalid-feedback d-block">
-      {{ getError('pais') }}
-    </div>
- 
-    <input type="submit"  value="Crear Aeropuerto" class="btn btn-primary mt-4" />
+  <app-input-row [group]="addForm" field="nombre"  label="Nombre" />
+  <app-input-row [group]="addForm" field="ciudad"  label="Ciudad" />
+  <app-input-row [group]="addForm" field="ciudadAbrev"  label="Ciudad Abrev" />
+  <app-input-row [group]="addForm" field="pais" label="Pais" />
+  <input type="submit" value="Crear Aeropuerto" class="btn btn-primary mt-4" />
 </form>

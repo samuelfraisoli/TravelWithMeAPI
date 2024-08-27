@@ -33,12 +33,28 @@ export const validDouble: ValidatorFn = (control: AbstractControl): ValidationEr
   return valid ? null : { validDouble: { value: control.value } };
 };
 
+//borrar
 export const validOffsetDateTime: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
   const valid = control.value === null ||
       (/^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.[0-9]{1,6})?((\+[0-9]{2}:[0-9]{2})|Z)$/.test(control.value) &&
       !isNaN(Date.parse(control.value)));
   return valid ? null : { validOffsetDateTime: { value: control.value } };
 };
+
+
+export function convertToOffsetDateTime(dateString: string | null | undefined): string {
+  //si es null devuelve un string vacío
+  if (!dateString) {
+      return ''; 
+  }
+
+  const date = new Date(dateString);
+
+  // Convierte la fecha a una cadena ISO con offset +1
+  const isoString = date.toISOString();
+  const offset = '+01:00';
+  return isoString.replace('Z', offset);
+}
 
 export const validJson: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
   if (control.value === null) {

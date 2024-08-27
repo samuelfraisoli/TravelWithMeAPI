@@ -34,7 +34,7 @@ export class AeropuertoEditComponent implements OnInit {
 
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
-      updated: $localize`:@@aeropuerto.update.success:Aeropuerto ha sido editado correctamente.`
+      updated: `Aeropuerto ha sido editado correctamente.`
     };
     return messages[key];
   }

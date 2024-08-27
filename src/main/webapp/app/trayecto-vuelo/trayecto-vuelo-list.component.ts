@@ -1,11 +1,13 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { map, Observable, of, Subscription } from 'rxjs';
 import { ErrorHandler } from 'app/common/error-handler.injectable';
 import { TrayectoVueloService } from 'app/trayecto-vuelo/trayecto-vuelo.service';
 import { TrayectoVueloDTO } from 'app/trayecto-vuelo/trayecto-vuelo.model';
 import { PaginationService } from 'app/pagination/pagination-service';
+import { AeropuertoService } from 'app/aeropuerto/aeropuerto.service';
+import { AeropuertoDTO } from 'app/aeropuerto/aeropuerto.model';
 
 
 @Component({
@@ -16,6 +18,7 @@ import { PaginationService } from 'app/pagination/pagination-service';
 export class TrayectoVueloListComponent implements OnInit, OnDestroy {
 
   trayectoVueloService = inject(TrayectoVueloService);
+  aeropuertoService = inject(AeropuertoService);
   errorHandler = inject(ErrorHandler);
   router = inject(Router);
   paginationService = inject(PaginationService)
@@ -24,11 +27,12 @@ export class TrayectoVueloListComponent implements OnInit, OnDestroy {
 
   currentPage: number = 1;
   totalPages: number = 1;
+  itemsPerPage: number = 6;
 
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
-      confirm: $localize`:@@delete.confirm:¿Quieres eliminar el elemento?.`,
-      deleted: $localize`:@@trayectoVuelo.delete.success:Trayecto de vuelo eliminado correctamente.`    };
+      confirm: `¿Quieres eliminar el elemento?.`,
+      deleted: `Trayecto de vuelo eliminado correctamente.`    };
     return messages[key];
   }
 
@@ -49,7 +53,7 @@ export class TrayectoVueloListComponent implements OnInit, OnDestroy {
     this.trayectoVueloService.getAllTrayectoVueloes()
         .subscribe({
           next: (data) => {
-            this.paginationService.setItems(data, 10);
+            this.paginationService.setItems(data, this.itemsPerPage);
             this.loadPage(1);
           },
           error: (error) => this.errorHandler.handleServerError(error.error)
@@ -79,6 +83,22 @@ export class TrayectoVueloListComponent implements OnInit, OnDestroy {
       this.currentPage = paginatedResult.currentPage;
       this.totalPages = paginatedResult.totalPages;
     }
+  }
+
+  //coge los nombres de los aeropuertos para mostrarlos en vez de la id que es lo que sale en el DTO
+  getAeropuertoNombre(id: number | null | undefined): Observable<AeropuertoDTO> {
+    //devuelve un observable vacio si la id es null o undefined
+    if (id == null) {
+      const aeropuertoVacio: Observable<AeropuertoDTO> = of({
+        id: 0,
+        nombre: '',
+        ciudad: '',
+        pais: ''
+    });
+    return aeropuertoVacio; 
+    }
+    
+    return this.aeropuertoService.getAeropuerto(id)
   }
 
   confirmDelete(id: number) {

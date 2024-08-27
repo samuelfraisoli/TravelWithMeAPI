@@ -5,19 +5,21 @@
     </div>
 </div>
 <form [formGroup]="editForm" (ngSubmit)="handleSubmit()">
-    <app-input-row [group]="editForm" field="id" rowType="number" i18n-label="@@trayectoVuelo.id.label" label="Id" />
-    <app-input-row [group]="editForm" field="idTrayecto" i18n-label="@@trayectoVuelo.idTrayecto.label" label="Id Trayecto" />
-    <app-input-row [group]="editForm" field="aerolinea" i18n-label="@@trayectoVuelo.aerolinea.label" label="Aerolinea" />
-    <app-input-row [group]="editForm" field="tipo" i18n-label="@@trayectoVuelo.tipo.label" label="Tipo" />
-    <app-input-row [group]="editForm" field="fechaSalida" i18n-label="@@trayectoVuelo.fechaSalida.label" label="Fecha Salida" />
-    <app-input-row [group]="editForm" field="fechaLlegada" i18n-label="@@trayectoVuelo.fechaLlegada.label" label="Fecha Llegada" />
-    <app-input-row [group]="editForm" field="escala" rowType="checkbox" i18n-label="@@trayectoVuelo.escala.label" label="Escala" />
-    <app-input-row [group]="editForm" field="fechaInicioEscala" i18n-label="@@trayectoVuelo.fechaInicioEscala.label" label="Fecha Inicio Escala" />
-    <app-input-row [group]="editForm" field="fechaFinEscala" i18n-label="@@trayectoVuelo.fechaFinEscala.label" label="Fecha Fin Escala" />
-    <app-input-row [group]="editForm" field="terminalSalida" i18n-label="@@trayectoVuelo.terminalSalida.label" label="Terminal Salida" />
-    <app-input-row [group]="editForm" field="terminalLlegada" i18n-label="@@trayectoVuelo.terminalLlegada.label" label="Terminal Llegada" />
-    <app-input-row [group]="editForm" field="vuelo" rowType="select" [options]="vueloValues" i18n-label="@@trayectoVuelo.vuelo.label" label="Vuelo" />
-    <app-input-row [group]="editForm" field="origen" rowType="select" [options]="origenValues" i18n-label="@@trayectoVuelo.origen.label" label="Origen" />
-    <app-input-row [group]="editForm" field="destino" rowType="select" [options]="destinoValues" i18n-label="@@trayectoVuelo.destino.label" label="Destino" />
-    <input type="submit" i18n-value="@@trayectoVuelo.edit.headline" value="Editar Trayecto Vuelo" class="btn btn-primary mt-4" />
+    <app-input-row [group]="editForm" field="id" rowType="number"  label="Id" />
+    <app-input-row [group]="editForm" field="idTrayecto"  label="Id Trayecto" />
+    <app-input-row [group]="editForm" field="aerolinea"  label="Aerolinea" />
+    <app-input-row [group]="editForm" field="tipo"  label="Tipo" />
+    <app-input-row [group]="editForm" field="fechaSalida"  label="Fecha Salida" />
+    <app-input-row [group]="editForm" field="fechaLlegada"  label="Fecha Llegada" />
+    <app-input-row [group]="editForm" field="escala" rowType="checkbox"  (change)="onCheckBoxEscalaChange($event)" label="Escala" />
+    @if (checkBoxEscalaIsChecked) {
+        <app-input-row [group]="editForm" field="fechaInicioEscala" rowType="datetime-local"  label="Fecha Inicio Escala" />
+        <app-input-row [group]="editForm" field="fechaFinEscala" rowType="datetime-local"  label="Fecha Fin Escala" />
+    }
+    <app-input-row [group]="editForm" field="terminalSalida"  label="Terminal Salida" />
+    <app-input-row [group]="editForm" field="terminalLlegada"  label="Terminal Llegada" />
+    <app-input-row [group]="editForm" field="vuelo" rowType="select" [options]="vueloValues"  label="Vuelo" />
+    <app-input-row [group]="editForm" field="origen" rowType="select" [options]="origenValues"  label="Origen" />
+    <app-input-row [group]="editForm" field="destino" rowType="select" [options]="destinoValues" label="Destino" />
+    <input type="submit"  value="Editar Trayecto Vuelo" class="btn btn-primary mt-4" />
 </form>

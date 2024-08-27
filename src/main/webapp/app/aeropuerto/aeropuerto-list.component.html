@@ -11,11 +11,11 @@
     <table class="table table-striped table-hover align-middle">
         <thead>
             <tr>
-                <th scope="col" i18n="@@aeropuerto.id.label">Id</th>
-                <th scope="col" i18n="@@aeropuerto.nombre.label">Nombre</th>
-                <th scope="col" i18n="@@aeropuerto.ciudad.label">Ciudad</th>
-                <th scope="col" i18n="@@aeropuerto.ciudadAbrev.label">Ciudad Abrev</th>
-                <th scope="col" i18n="@@aeropuerto.pais.label">Pais</th>
+                <th scope="col" >Id</th>
+                <th scope="col" >Nombre</th>
+                <th scope="col" >Ciudad</th>
+                <th scope="col" >Ciudad Abrev</th>
+                <th scope="col" >Pais</th>
                 <th><!-- --></th>
             </tr>
         </thead>
@@ -29,8 +29,8 @@
                 <td>{{ airport.pais }}</td>
                 <td>
                     <div class="float-end text-nowrap">
-                        <a [routerLink]="['/aeropuertos/edit', airport.id]" class="btn btn-sm btn-outline-primary" i18n="@@aeropuerto.list.edit">Editar</a>
-                        <button type="button" (click)="confirmDelete(airport.id!)" class="btn btn-sm btn-outline-danger" i18n="@@aeropuerto.list.delete">Eliminar</button>
+                        <a [routerLink]="['/aeropuertos/edit', airport.id]" class="btn btn-sm btn-outline-primary">Editar</a>
+                        <button type="button" (click)="confirmDelete(airport.id!)" class="btn btn-sm btn-outline-danger">Eliminar</button>
                     </div>
                 </td>
             </tr>

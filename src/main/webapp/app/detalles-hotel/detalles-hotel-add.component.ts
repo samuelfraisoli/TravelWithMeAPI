@@ -31,7 +31,7 @@ export class DetallesHotelAddComponent {
 
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
-      created: $localize`:@@detallesHotel.create.success:Detalles de Hotel creados correctamente.`
+      created: `Detalles de Hotel creados correctamente.`
     };
     return messages[key];
   }

@@ -27,10 +27,10 @@ export class AeropuertoListComponent implements OnInit, OnDestroy {
 
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
-      confirm: $localize`:@@delete.confirm:¿Quieres eliminar este elemento?.`,
-      deleted: $localize`:@@aeropuerto.delete.success:Aeropuerto eliminado correctamente.`,
-      'aeropuerto.trayectoVuelo.origen.referenced': $localize`:@@aeropuerto.trayectoVuelo.origen.referenced:Esta entidad todavía está referenciada por Trayecto Vuelo ${details?.id} a través del campo Origen.`,
-      'aeropuerto.trayectoVuelo.destino.referenced': $localize`:@@aeropuerto.trayectoVuelo.destino.referenced:Esta entidad todavía está referenciada por Trayecto Vuelo ${details?.id} a través del campo Destino.`
+      confirm: `¿Quieres eliminar este elemento?.`,
+      deleted: `Aeropuerto eliminado correctamente.`,
+      'aeropuerto.trayectoVuelo.origen.referenced': `Esta entidad todavía está referenciada por Trayecto Vuelo ${details?.id} a través del campo Origen.`,
+      'aeropuerto.trayectoVuelo.destino.referenced': `Esta entidad todavía está referenciada por Trayecto Vuelo ${details?.id} a través del campo Destino.`
     };
     return messages[key];
   }

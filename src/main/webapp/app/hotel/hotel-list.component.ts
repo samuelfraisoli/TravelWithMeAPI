@@ -24,12 +24,13 @@ export class HotelListComponent implements OnInit, OnDestroy {
 
   currentPage: number = 1;
   totalPages: number = 1;
+  itemsPerPage: number = 3;
 
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
-      confirm: $localize`:@@delete.confirm:¿Quieres eliminar este elemento?`,
-      deleted: $localize`:@@hotel.delete.success:Hotel eliminado correctamente.`,
-      'hotel.resena.hotel.referenced': $localize`:@@hotel.resena.hotel.referenced:Esta entidad está referenciada por Reseña ${details?.id} por el campo Hotel.`
+      confirm:`¿Quieres eliminar este elemento?`,
+      deleted:`Hotel eliminado correctamente.`,
+      'hotel.resena.hotel.referenced':`Esta entidad está referenciada por Reseña ${details?.id} por el campo Hotel.`
     };
     return messages[key];
   }
@@ -51,7 +52,7 @@ export class HotelListComponent implements OnInit, OnDestroy {
     this.hotelService.getAllHotels()
         .subscribe({
           next: (data) => {
-            this.paginationService.setItems(data, 10);
+            this.paginationService.setItems(data, this.itemsPerPage);
             this.loadPage(1);
           },
           error: (error) => this.errorHandler.handleServerError(error.error)

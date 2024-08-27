@@ -1,14 +1,14 @@
 <div class="d-flex flex-wrap mb-4">
-    <h1 class="flex-grow-1" i18n="@@detallesHotel.edit.headline">Editar Detalles de Hotel</h1>
+    <h1 class="flex-grow-1" >Editar Detalles de Hotel</h1>
     <div>
-        <a routerLink="/detallesHotels" class="btn btn-secondary" i18n="@@detallesHotel.edit.back">Volver</a>
+        <a routerLink="/detallesHotels" class="btn btn-secondary" >Volver</a>
     </div>
 </div>
 <form [formGroup]="editForm" (ngSubmit)="handleSubmit()">
-    <app-input-row [group]="editForm" field="id" rowType="number" i18n-label="@@detallesHotel.id.label" label="Id" />
+    <app-input-row [group]="editForm" field="id" rowType="number" label="Id" />
     <app-input-row [group]="editForm" field="descripcion" i18n-label="@@detallesHotel.descripcion.label" label="Descripcion" />
-    <app-input-row [group]="editForm" field="web" i18n-label="@@detallesHotel.web.label" label="Web" />
-    <app-input-row [group]="editForm" field="telefono" i18n-label="@@detallesHotel.telefono.label" label="Telefono" />
-    <app-input-row [group]="editForm" field="comodidades" rowType="textarea" i18n-label="@@detallesHotel.comodidades.label" label="Comodidades" />
-    <input type="submit" i18n-value="@@detallesHotel.edit.headline" value="Editar Detalles de Hotel" class="btn btn-primary mt-4" />
+    <app-input-row [group]="editForm" field="web" label="Web" />
+    <app-input-row [group]="editForm" field="telefono" label="Telefono" />
+    <app-input-row [group]="editForm" field="comodidades" rowType="textarea" label="Comodidades" />
+    <input type="submit" value="Editar Detalles de Hotel" class="btn btn-primary mt-4" />
 </form>

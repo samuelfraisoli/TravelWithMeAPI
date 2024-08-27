@@ -24,6 +24,7 @@ export class DetallesHotelListComponent implements OnInit, OnDestroy {
 
   currentPage: number = 1;
   totalPages: number = 1;
+  itemsPerPage: number = 3;
 
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
@@ -51,7 +52,7 @@ export class DetallesHotelListComponent implements OnInit, OnDestroy {
     this.detallesHotelService.getAllDetallesHotels()
         .subscribe({
           next: (data) => {
-            this.paginationService.setItems(data, 3);
+            this.paginationService.setItems(data, this.itemsPerPage);
             this.loadPage(1);
           },
           error: (error) => this.errorHandler.handleServerError(error.error)

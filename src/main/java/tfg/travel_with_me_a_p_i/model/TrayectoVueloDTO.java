@@ -33,10 +33,10 @@ public class TrayectoVueloDTO {
     @NotNull
     private Boolean escala;
 
-    @NotNull
+   
     private OffsetDateTime fechaInicioEscala;
 
-    @NotNull
+    
     private OffsetDateTime fechaFinEscala;
 
     @Size(max = 255)

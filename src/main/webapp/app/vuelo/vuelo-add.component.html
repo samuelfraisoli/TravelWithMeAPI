@@ -1,17 +1,17 @@
 <div class="d-flex flex-wrap mb-4">
-    <h1 class="flex-grow-1" i18n="@@vuelo.add.headline">Crea un Vuelo</h1>
+    <h1 class="flex-grow-1">Crea un Vuelo</h1>
     <div>
-        <a routerLink="/vuelos" class="btn btn-secondary" i18n="@@vuelo.add.back">Volver</a>
+        <a routerLink="/vuelos" class="btn btn-secondary">Volver</a>
     </div>
 </div>
 <form [formGroup]="addForm" (ngSubmit)="handleSubmit()">
-    <app-input-row [group]="addForm" field="idVuelo" i18n-label="@@vuelo.idVuelo.label" label="Id Vuelo" />
-    <app-input-row [group]="addForm" field="aerolinea" i18n-label="@@vuelo.aerolinea.label" label="Aerolinea" />
-    <app-input-row [group]="addForm" field="precio" i18n-label="@@vuelo.precio.label" label="Precio" />
-    <app-input-row [group]="addForm" field="tipo" i18n-label="@@vuelo.tipo.label" label="Tipo" />
-    <app-input-row [group]="addForm" field="origen" i18n-label="@@vuelo.origen.label" label="Origen" />
-    <app-input-row [group]="addForm" field="destino" i18n-label="@@vuelo.destino.label" label="Destino" />
-    <app-input-row [group]="addForm" field="fecha" i18n-label="@@vuelo.fecha.label" label="Fecha" />
-    <app-input-row [group]="addForm" field="equipaje" rowType="select" [options]="equipajeValues" i18n-label="@@vuelo.equipaje.label" label="Equipaje" />
-    <input type="submit" i18n-value="@@vuelo.add.headline" value="Crear Vuelo" class="btn btn-primary mt-4" />
+    <app-input-row [group]="addForm" field="idVuelo" label="Id Vuelo" />
+    <app-input-row [group]="addForm" field="aerolinea"  label="Aerolinea" />
+    <app-input-row [group]="addForm" field="precio"  label="Precio" />
+    <app-input-row [group]="addForm" field="tipo" label="Tipo" />
+    <app-input-row [group]="addForm" field="origen" label="Origen" />
+    <app-input-row [group]="addForm" field="destino" label="Destino" />
+    <app-input-row [group]="addForm" field="fecha" label="Fecha" />
+    <app-input-row [group]="addForm" field="equipaje" rowType="select" [options]="equipajeValues" label="Equipaje" />
+    <input type="submit" value="Crear Vuelo" class="btn btn-primary mt-4" />
 </form>

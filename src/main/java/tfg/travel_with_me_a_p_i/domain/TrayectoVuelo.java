@@ -42,10 +42,10 @@ public class TrayectoVuelo {
     @Column(nullable = false)
     private Boolean escala;
 
-    @Column(nullable = false)
+   
     private OffsetDateTime fechaInicioEscala;
 
-    @Column(nullable = false)
+    
     private OffsetDateTime fechaFinEscala;
 
     @Column

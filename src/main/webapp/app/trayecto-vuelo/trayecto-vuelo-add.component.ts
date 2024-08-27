@@ -7,7 +7,8 @@ import { TrayectoVueloService } from 'app/trayecto-vuelo/trayecto-vuelo.service'
 import { TrayectoVueloDTO } from 'app/trayecto-vuelo/trayecto-vuelo.model';
 import { ErrorHandler } from 'app/common/error-handler.injectable';
 import { validOffsetDateTime } from 'app/common/utils';
-
+import { convertToOffsetDateTime} from 'app/common/utils';
+ 
 
 @Component({
   selector: 'app-trayecto-vuelo-add',
@@ -21,6 +22,8 @@ export class TrayectoVueloAddComponent implements OnInit {
   router = inject(Router);
   errorHandler = inject(ErrorHandler);
 
+  checkBoxEscalaIsChecked = false;
+
   vueloValues?: Map<number,string>;
   origenValues?: Map<number,string>;
   destinoValues?: Map<number,string>;
@@ -29,11 +32,11 @@ export class TrayectoVueloAddComponent implements OnInit {
     idTrayecto: new FormControl(null, [Validators.required, Validators.maxLength(255)]),
     aerolinea: new FormControl(null, [Validators.required, Validators.maxLength(255)]),
     tipo: new FormControl(null, [Validators.maxLength(255)]),
-    fechaSalida: new FormControl(null, [Validators.required, validOffsetDateTime]),
-    fechaLlegada: new FormControl(null, [Validators.required, validOffsetDateTime]),
+    fechaSalida: new FormControl(null, [Validators.required]),
+    fechaLlegada: new FormControl(null, [Validators.required]),
     escala: new FormControl(false),
-    fechaInicioEscala: new FormControl(null, [Validators.required, validOffsetDateTime]),
-    fechaFinEscala: new FormControl(null, [Validators.required, validOffsetDateTime]),
+    fechaInicioEscala: new FormControl(null),
+    fechaFinEscala: new FormControl(null),
     terminalSalida: new FormControl(null, [Validators.maxLength(255)]),
     terminalLlegada: new FormControl(null, [Validators.maxLength(255)]),
     vuelo: new FormControl(null, [Validators.required]),
@@ -41,10 +44,16 @@ export class TrayectoVueloAddComponent implements OnInit {
     destino: new FormControl(null, [Validators.required])
   }, { updateOn: 'submit' });
 
+
+  onCheckBoxEscalaChange(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    this.checkBoxEscalaIsChecked = inputElement.checked;
+  }
+
+
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
-      created: $localize`:@@trayectoVuelo.create.success:Trayecto Vuelo was created successfully.`,
-      TRAYECTO_VUELO_ORIGEN_UNIQUE: $localize`:@@Exists.trayectoVuelo.origen:This Aeropuerto is already referenced by another Trayecto Vuelo.`
+      created: `Trayecto Vuelo was created successfully.`
     };
     return messages[key];
   }
@@ -73,7 +82,16 @@ export class TrayectoVueloAddComponent implements OnInit {
     if (!this.addForm.valid) {
       return;
     }
-    const data = new TrayectoVueloDTO(this.addForm.value);
+    const formValue = new TrayectoVueloDTO(this.addForm.value);
+
+    //converts dates to offsetDateTime because the backend uses this kind of date
+    const data = new TrayectoVueloDTO({
+      ...formValue,
+      fechaSalida: convertToOffsetDateTime(formValue.fechaSalida),
+      fechaLlegada: convertToOffsetDateTime(formValue.fechaLlegada),
+      fechaInicioEscala: convertToOffsetDateTime(formValue.fechaInicioEscala),
+      fechaFinEscala: convertToOffsetDateTime(formValue.fechaFinEscala)
+  });
     this.trayectoVueloService.createTrayectoVuelo(data)
         .subscribe({
           next: () => this.router.navigate(['/trayectoVuelos'], {

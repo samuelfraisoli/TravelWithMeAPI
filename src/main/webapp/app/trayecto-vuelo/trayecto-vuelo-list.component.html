@@ -10,15 +10,22 @@
 <div class="table-responsive">
     <table class="table table-striped table-hover align-middle">
         <thead>
-            <tr>
-                <th scope="col" i18n="@@trayectoVuelo.id.label">Id</th>
-                <th scope="col" i18n="@@trayectoVuelo.idTrayecto.label">Id Trayecto</th>
-                <th scope="col" i18n="@@trayectoVuelo.aerolinea.label">Aerolínea</th>
-                <th scope="col" i18n="@@trayectoVuelo.tipo.label">Tipo</th>
-                <th scope="col" i18n="@@trayectoVuelo.fechaSalida.label">Fecha Salida</th>
-                <th scope="col" i18n="@@trayectoVuelo.fechaLlegada.label">Fecha Llegada</th>
-                <th scope="col" i18n="@@trayectoVuelo.escala.label">Escala</th>
-                <th scope="col" i18n="@@trayectoVuelo.fechaInicioEscala.label">Fecha Inicio Escala</th>
+            <tr class="text-center align-text-top">
+                <th scope="col">Id</th>
+                <th scope="col" >Id Trayecto</th>
+                <th scope="col">Aerolínea</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Fecha Salida</th>
+                <th scope="col">Fecha Llegada</th>
+                <th scope="col">Escala</th>
+                <th scope="col" >Fecha Inicio Escala</th>
+                <th scope="col">Fecha Fin Escala</th>
+                <th scope="col">Terminal Salida</th>
+                <th scope="col">Terminal Llegada</th>
+                <th scope="col">Vuelo</th>
+                <th scope="col">Origen</th>
+                <th scope="col">Destino</th>
+
                 <th><!-- --></th>
             </tr>
         </thead>
@@ -33,10 +40,18 @@
                 <td>{{ flightSegment.fechaLlegada }}</td>
                 <td>{{ flightSegment.escala }}</td>
                 <td>{{ flightSegment.fechaInicioEscala }}</td>
+                <td>{{ flightSegment.fechaFinEscala }}</td>
+                <td>{{ flightSegment.terminalSalida }}</td>
+                <td>{{ flightSegment.terminalLlegada }}</td>
+                <td>{{ flightSegment.vuelo }}</td>
+                <td>{{ flightSegment.origen  }}</td>
+                <td>{{ flightSegment.destino }}</td>
+                <!-- <td>{{ (getAeropuertoNombre(flightSegment.origen) | async)?.nombre  }}</td>
+                <td>{{ getAeropuertoNombre(flightSegment.destino) | async }}</td> -->
                 <td>
                     <div class="float-end text-nowrap">
-                        <a [routerLink]="['/trayectoVuelos/edit', flightSegment.id]" class="btn btn-sm btn-outline-primary" i18n="@@trayectoVuelo.list.edit">Editar</a>
-                        <button type="button" (click)="confirmDelete(flightSegment.id!)" class="btn btn-sm btn-outline-danger" i18n="@@trayectoVuelo.list.delete">Eliminar</button>
+                        <a [routerLink]="['/trayectoVuelos/edit', flightSegment.id]" class="btn btn-sm btn-outline-primary" >Editar</a>
+                        <button type="button" (click)="confirmDelete(flightSegment.id!)" class="btn btn-sm btn-outline-danger" >Eliminar</button>
                     </div>
                 </td>
             </tr>
