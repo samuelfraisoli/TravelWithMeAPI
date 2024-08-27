@@ -4,7 +4,7 @@ TravelWithMeAPI es un servicio web API REST diseñado para crear, modificar, eli
 
 # Tecnologías utilizadas
 Backend de la API desarrollado en Java utilizando Spring Boot y Spring Web. 
-- Base de datos MySQL.
+- Base de datos MySQL contenerizada con Docker.
 - Las conexiones a la base de datos son realizadas mediante Hibernate y Spring Data JPA.
 
 Frontend desarrollado en Angular y Bootstrap.
