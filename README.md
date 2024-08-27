@@ -12,10 +12,6 @@ Frontend desarrollado en Angular y Bootstrap.
 - Para la recepción de los datos de forma reactiva se utilizan los observables de la biblioteca RXJS.
 - Uso de Angular Reactive Forms para gestión de formularios, para la creación y modificación de entidades.
 
-Despliegue en AWS
-- La API se encuentra desplegada en Elastic Beanstalk de AWS
-- La Base de Datos está desplegada en RDS (Amazon Relational Database Service)
-
 
 
 # Futuras adiciones
