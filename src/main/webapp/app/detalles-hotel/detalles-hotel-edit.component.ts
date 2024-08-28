@@ -57,7 +57,7 @@ export class DetallesHotelEditComponent implements OnInit {
     const data = new DetallesHotelDTO(this.editForm.value);
     this.detallesHotelService.updateDetallesHotel(this.currentId!, data)
         .subscribe({
-          next: () => this.router.navigate(['/detallesHotels'], {
+          next: () => this.router.navigate(['/detallesHoteles'], {
             state: {
               msgSuccess: this.getMessage('updated')
             }

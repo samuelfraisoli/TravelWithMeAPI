@@ -34,9 +34,9 @@ export class HotelAddComponent implements OnInit {
 
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
-      created: $localize`:@@hotel.create.success:Hotel was created successfully.`,
-      HOTEL_DIRECCION_UNIQUE: $localize`:@@Exists.hotel.direccion:Esta Dirección ya está referenciada por otro Hotel.`,
-      HOTEL_DETALLES_HOTEL_UNIQUE: $localize`:@@Exists.hotel.detallesHotel:Estos Detalles ya están referenciados por otro Hotel.`
+      created: `Hotel was created successfully.`,
+      HOTEL_DIRECCION_UNIQUE: `Esta Dirección ya está referenciada por otro Hotel.`,
+      HOTEL_DETALLES_HOTEL_UNIQUE: `Estos Detalles ya están referenciados por otro Hotel.`
     };
     return messages[key];
   }
@@ -63,7 +63,7 @@ export class HotelAddComponent implements OnInit {
     const data = new HotelDTO(this.addForm.value);
     this.hotelService.createHotel(data)
         .subscribe({
-          next: () => this.router.navigate(['/hotels'], {
+          next: () => this.router.navigate(['/hoteles'], {
             state: {
               msgSuccess: this.getMessage('created')
             }

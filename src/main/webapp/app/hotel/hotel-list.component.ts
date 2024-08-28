@@ -6,6 +6,10 @@ import { ErrorHandler } from 'app/common/error-handler.injectable';
 import { HotelService } from 'app/hotel/hotel.service';
 import { HotelDTO } from 'app/hotel/hotel.model';
 import { PaginationService } from 'app/pagination/pagination-service';
+import { DireccionDTO } from 'app/direccion/direccion.model';
+import { DetallesHotelDTO } from 'app/detalles-hotel/detalles-hotel.model';
+import { DetallesHotelService } from 'app/detalles-hotel/detalles-hotel.service';
+import { DireccionService } from 'app/direccion/direccion.service';
 
 
 @Component({
@@ -16,10 +20,14 @@ import { PaginationService } from 'app/pagination/pagination-service';
 export class HotelListComponent implements OnInit, OnDestroy {
 
   hotelService = inject(HotelService);
+  detallesHotelService = inject(DetallesHotelService);
+  direccionesService = inject(DireccionService);
   errorHandler = inject(ErrorHandler);
   router = inject(Router);
   paginationService = inject(PaginationService)
   hotels?: HotelDTO[];
+  direcciones?: DireccionDTO[];
+  detallesHoteles?: DetallesHotelDTO[];
   navigationSubscription?: Subscription;
 
   currentPage: number = 1;
@@ -57,6 +65,48 @@ export class HotelListComponent implements OnInit, OnDestroy {
           },
           error: (error) => this.errorHandler.handleServerError(error.error)
         });
+
+    this.direccionesService.getAllDireccions()
+    .subscribe({
+      next: (data) => {
+        this.direcciones = data;
+      },
+      error: (error) => this.errorHandler.handleServerError(error.error)
+    });
+
+    this.detallesHotelService.getAllDetallesHotels()
+    .subscribe({
+      next: (data) => {
+        this.detallesHoteles = data;
+      },
+      error: (error) => this.errorHandler.handleServerError(error.error)
+    });
+  }
+
+  showDetallesHotelDescription(id: number | undefined | null): string {
+    if (this.detallesHoteles == undefined) {
+      return ""
+    }
+    for (let detallesHotel of this.detallesHoteles) {
+      if (detallesHotel.id !== undefined && id === detallesHotel.id) {
+       
+        return detallesHotel.descripcion ?? 'Descripción no disponible';
+      }
+    }
+    return 'Descripción no disponible'; 
+  }
+
+  showDireccion(id: number | undefined | null): string {
+    if (this.direcciones == undefined) {
+      return ""
+    }
+    for (let direccion of this.direcciones) {
+      if (direccion.id !== undefined && id === direccion.id) {
+       
+        return direccion.direccionString ?? 'Dirección no disponible';
+      }
+    }
+    return 'Dirección no disponible'; 
   }
 
   loadPage(page: number): void {
@@ -88,7 +138,7 @@ export class HotelListComponent implements OnInit, OnDestroy {
     if (confirm(this.getMessage('confirm'))) {
       this.hotelService.deleteHotel(id)
           .subscribe({
-            next: () => this.router.navigate(['/hotels'], {
+            next: () => this.router.navigate(['/hoteles'], {
               state: {
                 msgInfo: this.getMessage('deleted')
               }
@@ -96,7 +146,7 @@ export class HotelListComponent implements OnInit, OnDestroy {
             error: (error) => {
               if (error.error?.code === 'REFERENCED') {
                 const messageParts = error.error.message.split(',');
-                this.router.navigate(['/hotels'], {
+                this.router.navigate(['/hoteles'], {
                   state: {
                     msgError: this.getMessage(messageParts[0], { id: messageParts[1] })
                   }

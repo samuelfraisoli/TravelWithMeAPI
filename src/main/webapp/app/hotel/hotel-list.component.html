@@ -1,7 +1,7 @@
 <div class="d-flex flex-wrap mb-4">
     <h1 class="flex-grow-1">Hoteles</h1>
     <div>
-        <a routerLink="/hotels/add" class="btn btn-primary ms-2">Crear Hotel</a>
+        <a routerLink="/hoteles/add" class="btn btn-primary ms-2">Crear Hotel</a>
     </div>
 </div>
 @if (!hotels || hotels.length === 0) {
@@ -11,7 +11,7 @@
     <table class="table table-striped table-hover align-middle">
         <thead>
             <tr>
-                <th scope="col">Id</th>
+                <th scope="col">id</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Direccion</th>
                 <th scope="col">Detalles Hotel</th>
@@ -24,13 +24,13 @@
             <tr>
                 <td>{{ hotel.id }}</td>
                 <td>{{ hotel.nombre }}</td>
-                <td>{{ hotel.direccion }}</td>
-                <td>{{ hotel.detallesHotel }}</td>
+                <td>{{ showDireccion(hotel.direccion) }}</td>
+                <td>{{ showDetallesHotelDescription(hotel.detallesHotel) }}</td>
                 <td>
-                    <img [src]="hotel.fotos[2]" style="width:300px; height: auto;">
+                    <img [src]="hotel.fotos[2]" style="width:300px; height: auto;" class="rounded-3">
                 <td>
                     <div class="float-end text-nowrap">
-                        <a [routerLink]="['/hotels/edit', hotel.id]" class="btn btn-sm btn-outline-primary">Editar</a>
+                        <a [routerLink]="['/hoteles/edit', hotel.id]" class="btn btn-sm btn-outline-primary">Editar</a>
                         <button type="button" (click)="confirmDelete(hotel.id!)" class="btn btn-sm btn-outline-danger">Eliminar</button>
                     </div>
                 </td>

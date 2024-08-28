@@ -31,7 +31,7 @@ export class DireccionAddComponent {
 
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
-      created: $localize`:@@direccion.create.success:Lairección ha sido creada correctamente.`
+      created: `La dirección ha sido creada correctamente.`
     };
     return messages[key];
   }
@@ -45,7 +45,7 @@ export class DireccionAddComponent {
     const data = new DireccionDTO(this.addForm.value);
     this.direccionService.createDireccion(data)
         .subscribe({
-          next: () => this.router.navigate(['/direccions'], {
+          next: () => this.router.navigate(['/direcciones'], {
             state: {
               msgSuccess: this.getMessage('created')
             }

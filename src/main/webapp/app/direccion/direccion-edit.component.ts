@@ -36,7 +36,7 @@ export class DireccionEditComponent implements OnInit {
 
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
-      updated: $localize`:@@direccion.update.success:Direccion was updated successfully.`
+      updated: `Direccion was updated successfully.`
     };
     return messages[key];
   }
@@ -59,7 +59,7 @@ export class DireccionEditComponent implements OnInit {
     const data = new DireccionDTO(this.editForm.value);
     this.direccionService.updateDireccion(this.currentId!, data)
         .subscribe({
-          next: () => this.router.navigate(['/direccions'], {
+          next: () => this.router.navigate(['/direcciones'], {
             state: {
               msgSuccess: this.getMessage('updated')
             }

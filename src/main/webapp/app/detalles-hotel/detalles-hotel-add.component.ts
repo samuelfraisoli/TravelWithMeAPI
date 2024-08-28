@@ -45,7 +45,7 @@ export class DetallesHotelAddComponent {
     const data = new DetallesHotelDTO(this.addForm.value);
     this.detallesHotelService.createDetallesHotel(data)
         .subscribe({
-          next: () => this.router.navigate(['/detallesHotels'], {
+          next: () => this.router.navigate(['/detallesHoteles'], {
             state: {
               msgSuccess: this.getMessage('created')
             }

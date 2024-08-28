@@ -8,21 +8,27 @@ import { TrayectoVueloDTO } from 'app/trayecto-vuelo/trayecto-vuelo.model';
 import { PaginationService } from 'app/pagination/pagination-service';
 import { AeropuertoService } from 'app/aeropuerto/aeropuerto.service';
 import { AeropuertoDTO } from 'app/aeropuerto/aeropuerto.model';
+import { BooleanToTextPipe } from 'app/common/boolean-to-text.pipe';
+import { VueloService } from 'app/vuelo/vuelo.service';
+import { VueloDTO } from 'app/vuelo/vuelo.model';
 
 
 @Component({
   selector: 'app-trayecto-vuelo-list',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, BooleanToTextPipe],
   templateUrl: './trayecto-vuelo-list.component.html'})
 export class TrayectoVueloListComponent implements OnInit, OnDestroy {
 
   trayectoVueloService = inject(TrayectoVueloService);
   aeropuertoService = inject(AeropuertoService);
+  vueloService = inject(VueloService);
   errorHandler = inject(ErrorHandler);
   router = inject(Router);
   paginationService = inject(PaginationService)
   flightSegments?: TrayectoVueloDTO[];
+  airports?: AeropuertoDTO[];
+  vuelos?: VueloDTO[];
   navigationSubscription?: Subscription;
 
   currentPage: number = 1;
@@ -58,8 +64,25 @@ export class TrayectoVueloListComponent implements OnInit, OnDestroy {
           },
           error: (error) => this.errorHandler.handleServerError(error.error)
         });
+
+    this.aeropuertoService.getAllAeropuertoes()
+    .subscribe({
+      next: (data) => {
+        this.airports = data;
+      },
+      error: (error) => this.errorHandler.handleServerError(error.error)
+    });
+
+    this.vueloService.getAllVueloes()
+    .subscribe({
+      next: (data) => {
+        this.vuelos = data;
+      },
+      error: (error) => this.errorHandler.handleServerError(error.error)
+    });
   }
 
+  //Pagination
   loadPage(page: number): void {
     const paginatedResult = this.paginationService.getPage<TrayectoVueloDTO>(page);
     this.flightSegments = paginatedResult.items;
@@ -85,21 +108,22 @@ export class TrayectoVueloListComponent implements OnInit, OnDestroy {
     }
   }
 
-  //coge los nombres de los aeropuertos para mostrarlos en vez de la id que es lo que sale en el DTO
-  getAeropuertoNombre(id: number | null | undefined): Observable<AeropuertoDTO> {
-    //devuelve un observable vacio si la id es null o undefined
-    if (id == null) {
-      const aeropuertoVacio: Observable<AeropuertoDTO> = of({
-        id: 0,
-        nombre: '',
-        ciudad: '',
-        pais: ''
-    });
-    return aeropuertoVacio; 
+  
+  showAirportName(id: number | undefined | null): string {
+    if (this.airports == undefined) {
+      return ""
     }
-    
-    return this.aeropuertoService.getAeropuerto(id)
+    for (let airport of this.airports) {
+      if (airport.id !== undefined && id === airport.id) {
+       
+        return airport.nombre ?? 'Nombre no disponible';
+      }
+    }
+    return 'Nombre no disponible'; 
   }
+
+
+  
 
   confirmDelete(id: number) {
     if (confirm(this.getMessage('confirm'))) {

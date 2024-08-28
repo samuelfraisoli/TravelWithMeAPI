@@ -28,9 +28,9 @@ export class DetallesHotelListComponent implements OnInit, OnDestroy {
 
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
-      confirm: $localize`:@@delete.confirm:¿Quieres eliminar este elemento?`,
-      deleted: $localize`:@@detallesHotel.delete.success:Detalles Hotel eliminado correctamente.`,
-      'detallesHotel.hotel.detallesHotel.referenced': $localize`:@@detallesHotel.hotel.detallesHotel.referenced:Esta entidad está referenciada por ${details?.id} por el campo Detalles Hotel.`
+      confirm: `¿Quieres eliminar este elemento?`,
+      deleted:`Detalles Hotel eliminado correctamente.`,
+      'detallesHotel.hotel.detallesHotel.referenced': `Esta entidad está referenciada por ${details?.id} por el campo Detalles Hotel.`
     };
     return messages[key];
   }
@@ -88,7 +88,7 @@ export class DetallesHotelListComponent implements OnInit, OnDestroy {
     if (confirm(this.getMessage('confirm'))) {
       this.detallesHotelService.deleteDetallesHotel(id)
           .subscribe({
-            next: () => this.router.navigate(['/detallesHotels'], {
+            next: () => this.router.navigate(['/detallesHoteles'], {
               state: {
                 msgInfo: this.getMessage('deleted')
               }
@@ -96,7 +96,7 @@ export class DetallesHotelListComponent implements OnInit, OnDestroy {
             error: (error) => {
               if (error.error?.code === 'REFERENCED') {
                 const messageParts = error.error.message.split(',');
-                this.router.navigate(['/detallesHotels'], {
+                this.router.navigate(['/detallesHoteles'], {
                   state: {
                     msgError: this.getMessage(messageParts[0], { id: messageParts[1] })
                   }

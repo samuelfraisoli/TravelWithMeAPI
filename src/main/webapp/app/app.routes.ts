@@ -55,15 +55,15 @@ export const routes: Routes = [
     component: TrayectoVueloEditComponent,
   },
   {
-    path: 'hotels',
+    path: 'hoteles',
     component: HotelListComponent,
   },
   {
-    path: 'hotels/add',
+    path: 'hoteles/add',
     component: HotelAddComponent,
   },
   {
-    path: 'hotels/edit/:id',
+    path: 'hoteles/edit/:id',
     component: HotelEditComponent,
   },
   {
@@ -79,15 +79,15 @@ export const routes: Routes = [
     component: AeropuertoEditComponent,
   },
   {
-    path: 'direccions',
+    path: 'direcciones',
     component: DireccionListComponent,
   },
   {
-    path: 'direccions/add',
+    path: 'direcciones/add',
     component: DireccionAddComponent,
   },
   {
-    path: 'direccions/edit/:id',
+    path: 'direcciones/edit/:id',
     component: DireccionEditComponent,
   },
   {
@@ -103,15 +103,15 @@ export const routes: Routes = [
     component: ResenaEditComponent,
   },
   {
-    path: 'detallesHotels',
+    path: 'detallesHoteles',
     component: DetallesHotelListComponent,
   },
   {
-    path: 'detallesHotels/add',
+    path: 'detallesHoteles/add',
     component: DetallesHotelAddComponent,
   },
   {
-    path: 'detallesHotels/edit/:id',
+    path: 'detallesHoteles/edit/:id',
     component: DetallesHotelEditComponent,
   },
   {

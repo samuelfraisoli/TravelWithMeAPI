@@ -37,9 +37,9 @@ export class HotelEditComponent implements OnInit {
 
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
-      updated: $localize`:@@hotel.update.success:Hotel modificado correctamente.`,
-      HOTEL_DIRECCION_UNIQUE: $localize`:@@Exists.hotel.direccion:Esta Dirección ya está referenciada por otro Hotel.`,
-      HOTEL_DETALLES_HOTEL_UNIQUE: $localize`:@@Exists.hotel.detallesHotel:Estos Detalles del Hotel ya están referenciados por otro Hotel.`
+      updated: `Hotel modificado correctamente.`,
+      HOTEL_DIRECCION_UNIQUE: `Esta Dirección ya está referenciada por otro Hotel.`,
+      HOTEL_DETALLES_HOTEL_UNIQUE: `Estos Detalles del Hotel ya están referenciados por otro Hotel.`
     };
     return messages[key];
   }
@@ -72,7 +72,7 @@ export class HotelEditComponent implements OnInit {
     const data = new HotelDTO(this.editForm.value);
     this.hotelService.updateHotel(this.currentId!, data)
         .subscribe({
-          next: () => this.router.navigate(['/hotels'], {
+          next: () => this.router.navigate(['/hoteles'], {
             state: {
               msgSuccess: this.getMessage('updated')
             }
